@@ -20,13 +20,13 @@ class CreatePaymentDetailsTable extends Migration
             $table->integer('cc_expiry_month');
             $table->integer('cc_expiry_year');
             $table->integer('cc_cvc');
+            $table->string('address');
+            $table->string('city');
+            $table->integer('postcode');
             $table->timestamps();
 
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-
-            $table->integer('address_id')->unsigned();
-            $table->foreign('address_id')->references('id')->on('addresses');
         });
     }
 

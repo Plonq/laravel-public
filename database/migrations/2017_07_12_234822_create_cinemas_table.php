@@ -15,10 +15,10 @@ class CreateCinemasTable extends Migration
     {
         Schema::create('cinemas', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('address');
+            $table->string('city');
+            $table->integer('postcode');
             $table->timestamps();
-
-            $table->integer('address_id')->unsigned();
-            $table->foreign('address_id')->references('id')->on('addresses');
         });
     }
 
