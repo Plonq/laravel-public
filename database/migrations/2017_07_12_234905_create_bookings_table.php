@@ -16,6 +16,12 @@ class CreateBookingsTable extends Migration
         Schema::create('bookings', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
+
+            $table->integer('payment_detail_id')->unsigned();
+            $table->foreign('payment_detail_id')->references('id')->on('payment_details');
         });
     }
 

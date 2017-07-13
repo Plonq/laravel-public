@@ -16,6 +16,12 @@ class CreateSessionsTable extends Migration
         Schema::create('sessions', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+
+            $table->integer('movie_id')->unsigned();
+            $table->foreign('movie_id')->references('id')->on('movies');
+
+            $table->integer('cinema_id')->unsigned();
+            $table->foreign('cinema_id')->references('id')->on('cinemas');
         });
     }
 

@@ -16,6 +16,9 @@ class CreateCinemasTable extends Migration
         Schema::create('cinemas', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+
+            $table->integer('address_id')->unsigned();
+            $table->foreign('address_id')->references('id')->on('addresses');
         });
     }
 
