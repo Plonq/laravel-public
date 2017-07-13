@@ -15,7 +15,7 @@ class CreateSessionsTable extends Migration
     {
         Schema::create('sessions', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamp('time');
+            $table->timestamp('scheduled_at');
             $table->timestamps();
 
             $table->integer('movie_id')->unsigned();

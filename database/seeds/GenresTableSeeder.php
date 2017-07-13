@@ -22,7 +22,9 @@ class GenresTableSeeder extends Seeder
             ['name' => 'History'],
             ['name' => 'Mystery'],
             ['name' => 'Romance'],
-            ['name' => 'Thriller']
+            ['name' => 'Thriller'],
+            ['name' => 'Biography'],
+            ['name' => 'Animation']
         ]);
     }
 }
