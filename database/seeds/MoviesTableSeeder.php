@@ -24,21 +24,21 @@ class MoviesTableSeeder extends Seeder
                 'release_date' => '2017-07-14',
                 'genre_id' => 10,
                 'rating_id' => 4,
-                'featured' => true
+                'featured' => false
             ],
             [
                 'name' => 'A Monster Calls',
                 'release_date' => '2017-07-27',
                 'genre_id' => 2,
                 'rating_id' => 3,
-                'featured' => false
+                'featured' => true
             ],
             [
                 'name' => 'The Big Sick',
                 'release_date' => '2017-08-03',
                 'genre_id' => 1,
                 'rating_id' => 4,
-                'featured' => true
+                'featured' => false
             ],
             [
                 'name' => 'Laputa: Castle in the Sky',
