@@ -36,9 +36,9 @@
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li class="{{Request::path() == '/' ? 'active' : ''}}"><a href="{{ url('/') }}">Home</a></li>
+                    <li class="{{Request::path() == 'movies' ? 'active' : ''}}"><a href="{{ url('/movies') }}">Movies</a></li>
+                    <li class="{{Request::path() == 'search' ? 'active' : ''}}"><a href="{{ url('/search') }}">Search</a></li>
                 </ul>
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
