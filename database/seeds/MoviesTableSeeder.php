@@ -13,35 +13,35 @@ class MoviesTableSeeder extends Seeder
     {
         DB::table('movies')->insert([
             [
-                'name' => 'All Eyez on Me',
+                'title' => 'All Eyez on Me',
                 'release_date' => '2017-06-15',
                 'genre_id' => 12,
                 'rating_id' => 5,
                 'featured' => true
             ],
             [
-                'name' => 'Channa Mereya',
+                'title' => 'Channa Mereya',
                 'release_date' => '2017-07-14',
                 'genre_id' => 10,
                 'rating_id' => 4,
                 'featured' => false
             ],
             [
-                'name' => 'A Monster Calls',
+                'title' => 'A Monster Calls',
                 'release_date' => '2017-07-27',
                 'genre_id' => 2,
                 'rating_id' => 3,
                 'featured' => true
             ],
             [
-                'name' => 'The Big Sick',
+                'title' => 'The Big Sick',
                 'release_date' => '2017-08-03',
                 'genre_id' => 1,
                 'rating_id' => 4,
                 'featured' => false
             ],
             [
-                'name' => 'Laputa: Castle in the Sky',
+                'title' => 'Laputa: Castle in the Sky',
                 'release_date' => '2017-08-24',
                 'genre_id' => 13,
                 'rating_id' => 2,
