@@ -12,4 +12,6 @@
 */
 
 Auth::routes();
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'PagesController@home')->name('home');
+Route::get('/movies', 'PagesController@movies')->name('movies');
+Route::get('/search', 'PagesController@search')->name('search');
