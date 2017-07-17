@@ -30,15 +30,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ route('home') }}">
                     {{ config('app.name', 'MI. Movies') }}
                 </a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="{{Request::path() == '/' ? 'active' : ''}}"><a href="{{ url('/') }}">Home</a></li>
-                    <li class="{{Request::path() == 'movies' ? 'active' : ''}}"><a href="{{ url('/movies') }}">Movies</a></li>
-                    <li class="{{Request::path() == 'search' ? 'active' : ''}}"><a href="{{ url('/search') }}">Search</a></li>
+                    <li class="{{Request::path() == '/' ? 'active' : ''}}"><a href="{{ route('home') }}">Home</a></li>
+                    <li class="{{Request::path() == 'movies' ? 'active' : ''}}"><a href="{{ route('movies') }}">Movies</a></li>
+                    <li class="{{Request::path() == 'search' ? 'active' : ''}}"><a href="{{ route('search') }}">Search</a></li>
                 </ul>
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
