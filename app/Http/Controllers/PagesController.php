@@ -34,10 +34,10 @@ class PagesController extends Controller
      */
     public function movies()
     {
-        // Now Showing includes movies +/- 1 week from today
+        // Now Showing includes movies released up to two weeks ago and one week in the future
         $nowshowing = Movie::where([
             ['release_date', '<', date('Y-m-d', strtotime("+7 days"))],
-            ['release_date', '>=', date('Y-m-d', strtotime("-7 days"))]
+            ['release_date', '>=', date('Y-m-d', strtotime("-14 days"))]
         ])->get();
         $comingsoon = Movie::where('release_date', '>=', date('Y-m-d', strtotime("+7 days")))->get();
         return view('pages.movies', ['nowshowing' => $nowshowing, 'comingsoon' => $comingsoon]);
