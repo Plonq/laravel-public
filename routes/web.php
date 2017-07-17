@@ -17,4 +17,4 @@ Route::get('/movies', 'PagesController@movies')->name('movies');
 Route::get('/search', 'PagesController@search')->name('search');
 
 // Ajax routes
-Route::post('/search', 'AjaxController@search_movies');
+Route::post('/search', 'AjaxController@search');
