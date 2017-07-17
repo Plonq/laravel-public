@@ -96,6 +96,10 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
+
+    @yield('scripts')
 
 </body>
 </html>
