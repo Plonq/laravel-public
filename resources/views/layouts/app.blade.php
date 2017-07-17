@@ -31,7 +31,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('app.name', 'MI. Movies') }}
                 </a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
