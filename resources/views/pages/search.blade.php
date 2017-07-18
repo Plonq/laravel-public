@@ -1,12 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
+    <header class="page-header">
+        <h3>Search Movies/Cinemas</h3>
+    </header>
     <div class="row">
         <div class="col-sm-6">
             <form class="form" id="movie-search-form">
                 {{ csrf_field() }}
                 <div class="input-group">
-                    <input id="movie-search-field" name="search-term" type="text" class="form-control" placeholder="Search for title, genre, ...">
+                    <input id="movie-search-field" name="search-term" type="text" class="form-control" placeholder="Enter search term...">
                     <span class="input-group-btn">
                         <button id="movie-search-button" class="btn btn-default" type="submit">Search</button>
                     </span>
@@ -25,7 +28,7 @@
                     <th>Genre</th>
                     <th>Rating</th>
                     <th>Release Date</th>
-                    <th>Buy Tickets</th>
+                    <th>Info</th>
                 </tr>
                 </thead>
                 <tbody id="movie-results">
@@ -43,7 +46,7 @@
                     <th>Address</th>
                     <th>City</th>
                     <th>Postcode</th>
-                    <th>View Sessions</th>
+                    <th>Info</th>
                 </tr>
                 </thead>
                 <tbody id="cinema-results">
@@ -78,7 +81,7 @@
                                     "  <td>" + movie.genre + "</td>",
                                     "  <td>" + movie.rating + " (" + movie.rating_code + ")</td>",
                                     "  <td>" + movie.release_date + "</td>",
-                                    "  <td><a class='btn btn-sm btn-default' role='button' href='#" + movie.id + "'>Buy Tickets</a></td>",
+                                    "  <td><a class='btn btn-sm btn-default' role='button' href='/movie/" + movie.id + "'>Info/Sessions</a></td>",
                                     "</tr>"
                                 ].join("\n"));
                                 $('#movie-results').append(movie_row_html);
@@ -99,7 +102,7 @@
                                     "  <td>" + cinema.address + "</td>",
                                     "  <td>" + cinema.city + "</td>",
                                     "  <td>" + cinema.postcode + "</td>",
-                                    "  <td><a class='btn btn-sm btn-default' role='button' href='#" + cinema.id + "'>View Sessions</a></td>",
+                                    "  <td><a class='btn btn-sm btn-default' role='button' href='/cinema/" + cinema.id + "'>Info/Sessions</a></td>",
                                     "</tr>"
                                 ].join("\n"));
                                 $('#cinema-results').append(cinema_row_html);

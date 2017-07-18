@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+    <header class="page-header">
+        <h3>Movies</h3>
+    </header>
     <div class="row">
         <div class="col-md-12">
             <ul class="nav nav-tabs" role="tablist">
@@ -18,7 +21,7 @@
                             <th>Genre</th>
                             <th>Rating</th>
                             <th>Release Date</th>
-                            <th>Sessions</th>
+                            <th>Sessions/Info</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -28,7 +31,7 @@
                                 <td>{{$movie->genre->name}}</td>
                                 <td>{{$movie->rating->name}} ({{$movie->rating->code}})</td>
                                 <td>{{$movie->release_date}}</td>
-                                <td><a class="btn btn-sm btn-default" role='button' href="#">Sessions</a></td>
+                                <td><a class="btn btn-sm btn-default" role='button' href="{{route('movie', $movie->id)}}">Sessions/Info</a></td>
                             </tr>
                         @endforeach
                         </tbody>

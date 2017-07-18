@@ -12,9 +12,17 @@
 */
 
 Auth::routes();
+
+// Public accessible
 Route::get('/', 'PagesController@home')->name('home');
 Route::get('/movies', 'PagesController@movies')->name('movies');
+Route::get('/movie/{id}', 'PagesController@movie')->name('movie');
+Route::get('/cinema/{id}', 'PagesController@cinema')->name('cinema');
 Route::get('/search', 'PagesController@search')->name('search');
+Route::get('/session/{id}', 'PagesController@session')->name('session');
+
+// Auth required
 
 // Ajax routes
 Route::post('/search', 'AjaxController@search');
+Route::post('/sessions', 'AjaxController@get_sessions');
