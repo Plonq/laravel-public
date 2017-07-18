@@ -24,12 +24,20 @@ class PagesController extends Controller
      */
     public function movies()
     {
-        // Now Showing includes movies released up to two weeks ago and one week in the future
-        $nowshowing = Movie::where([
-            ['release_date', '<', date('Y-m-d', strtotime("+7 days"))],
-            ['release_date', '>=', date('Y-m-d', strtotime("-14 days"))]
-        ])->get();
-        $comingsoon = Movie::where('release_date', '>=', date('Y-m-d', strtotime("+7 days")))->get();
+        // Now Showing includes movies with at least one session in the next three days
+        $nowshowing = Movie::whereHas('sessions', function ($query) {
+            $query->where([
+                ['scheduled_at', '>=', date('Y-m-d 00:00:00')],
+                ['scheduled_at', '<', date('Y-m-d 00:00:00', strtotime('+4 days'))]
+            ]);
+        })->get();
+
+        // Coming Soon includes movies with sessions more than three days in the future, OR
+        // with release date more than 3 days in the future (in case no sessions scheduled).
+        $comingsoon = Movie::whereHas('sessions', function ($query) {
+            $query->where('scheduled_at', '>', date('Y-m-d 00:00:00', strtotime('+4 days')));
+        })->orWhere('release_date', '>', date('Y-m-d', strtotime("+4 days")))->get();
+
         return view('pages.movies', ['nowshowing' => $nowshowing, 'comingsoon' => $comingsoon]);
     }
 

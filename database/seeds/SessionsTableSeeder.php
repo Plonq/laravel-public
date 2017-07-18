@@ -13,32 +13,32 @@ class SessionsTableSeeder extends Seeder
     {
         DB::table('sessions')->insert([
             [
-                'scheduled_at' => '2017-06-15 16:30:00',
+                'scheduled_at' => '2017-07-18 16:30:00',
                 'movie_id' => 1,
                 'cinema_id' => 6,
             ],
             [
-                'scheduled_at' => '2017-06-15 19:00:00',
+                'scheduled_at' => '2017-07-18 19:00:00',
                 'movie_id' => 1,
                 'cinema_id' => 6,
             ],
             [
-                'scheduled_at' => '2017-06-15 16:30:00',
+                'scheduled_at' => '2017-07-18 16:30:00',
                 'movie_id' => 1,
                 'cinema_id' => 4,
             ],
             [
-                'scheduled_at' => '2017-06-15 19:00:00',
+                'scheduled_at' => '2017-07-18 19:00:00',
                 'movie_id' => 1,
                 'cinema_id' => 4,
             ],
             [
-                'scheduled_at' => '2017-06-15 16:30:00',
+                'scheduled_at' => '2017-07-18 16:30:00',
                 'movie_id' => 1,
                 'cinema_id' => 2,
             ],
             [
-                'scheduled_at' => '2017-06-15 19:00:00',
+                'scheduled_at' => '2017-07-18 19:00:00',
                 'movie_id' => 1,
                 'cinema_id' => 2,
             ],

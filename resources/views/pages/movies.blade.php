@@ -18,6 +18,7 @@
                             <th>Genre</th>
                             <th>Rating</th>
                             <th>Release Date</th>
+                            <th>Sessions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -27,6 +28,7 @@
                                 <td>{{$movie->genre->name}}</td>
                                 <td>{{$movie->rating->name}} ({{$movie->rating->code}})</td>
                                 <td>{{$movie->release_date}}</td>
+                                <td><a class="btn btn-sm btn-default" role='button' href="#">Sessions</a></td>
                             </tr>
                         @endforeach
                         </tbody>
