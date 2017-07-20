@@ -7,6 +7,7 @@ use App\Movie;
 use App\Session;
 use App\Cinema;
 use App\TicketType;
+use App\Ticket;
 
 class PagesController extends Controller
 {
@@ -54,11 +55,17 @@ class PagesController extends Controller
         $movie = Movie::with('genre')
             ->with('rating')
             ->where('id', $id)
-            ->get()->all()[0];  // Get() returns collection with one object
+            ->first();
 
-        $cinemas = Cinema::all();
+        $cinemas = Cinema::whereHas('sessions', function($q) use ($id) {
+            $q->where('movie_id', $id);
+        })
+            ->orderBy('city')
+            ->get();
 
-        return view('pages.movie', ['movie' => $movie, 'cinemas' => $cinemas]);
+        $ticket_types = TicketType::all();
+
+        return view('pages.movie', ['movie' => $movie, 'cinemas' => $cinemas, 'ticket_types' => $ticket_types]);
     }
 
     /**
@@ -79,21 +86,29 @@ class PagesController extends Controller
     }
 
     /**
-     * Session details and ticket purchase
+     * Display the user's cart
      *
-     * @param $id
      * @return \Illuminate\Http\Response
      */
-    public function session($id)
+    public function cart()
     {
-        $session = Session::with('movie')
-            ->with('cinema')
-            ->where('id', $id)
-            ->get()->all()[0];
+        $cart = session('cart', false);
+
+        if ($cart) {
+            $cart_display = array();
+            foreach ($cart as $session_id => $session) {
+                $item['session'] = Session::with('movie')
+                    ->with('cinema')
+                    ->where('id', $session_id)
+                    ->first();
+                $item['tickets'] = $session['tickets'];
+                $cart_display[] = $item;
+            }
+        }
 
         $ticket_types = TicketType::all();
 
-        return view('pages.session', ['session' => $session, 'ticket_types' => $ticket_types]);
+        return view('pages.cart', ['cart' => $cart_display, 'ticket_types' => $ticket_types]);
     }
 
     /**
@@ -103,6 +118,6 @@ class PagesController extends Controller
      */
     public function search()
     {
-        return view('pages.search')->with('movies', Movie::all());
+        return view('pages.search');
     }
 }

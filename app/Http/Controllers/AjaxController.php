@@ -52,17 +52,42 @@ class AjaxController extends Controller
      */
     public function get_sessions(Request $request)
     {
-        $data = $request->all();
-
         // We expect a cinema ID and a movie ID
-        $cinema_id = $data['cinema_id'];
-        $movie_id = $data['movie_id'];
-
         $sessions = Session::where([
-            ['movie_id', $movie_id],
-            ['cinema_id', $cinema_id]
+            ['movie_id', $request->get('movie_id')],
+            ['cinema_id', $request->get('cinema_id')]
         ])->get();
 
+        foreach ($sessions as $session) {
+            $session->date = date('l, j F Y', strtotime($session->scheduled_at));
+            $session->time = date('g:i A', strtotime($session->scheduled_at));
+        }
+
         return json_encode($sessions);
+    }
+
+    /**
+     * Stores tickets in http session organised by movie session id
+     *
+     * @param Request $request
+     * @return string
+     */
+    public function add_to_cart(Request $request)
+    {
+        $data = $request->all();
+
+        // Get session id and remove so we can loop over the tickets
+        $session_id = $data['session_id'];
+        unset($data['session_id']);
+
+        // Update cart, adding to existing ticket quantities if they exist
+        foreach ($data as $ticket_type => $qty) {
+            if (intval($qty) > 0) {
+                $request->session()->put('cart.'.$session_id.'.tickets.'.$ticket_type,
+                    intval($qty) + intval($request->session()->get('cart.'.$session_id.'.tickets.'.$ticket_type, 0)));
+            }
+        }
+
+        return 'success';
     }
 }

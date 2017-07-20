@@ -23,22 +23,22 @@ class SessionsTableSeeder extends Seeder
                 'cinema_id' => 6,
             ],
             [
-                'scheduled_at' => '2017-07-18 16:30:00',
+                'scheduled_at' => '2017-07-18 14:30:00',
                 'movie_id' => 1,
                 'cinema_id' => 4,
             ],
             [
-                'scheduled_at' => '2017-07-18 19:00:00',
+                'scheduled_at' => '2017-07-18 17:00:00',
                 'movie_id' => 1,
                 'cinema_id' => 4,
             ],
             [
-                'scheduled_at' => '2017-07-18 16:30:00',
+                'scheduled_at' => '2017-07-18 11:30:00',
                 'movie_id' => 1,
                 'cinema_id' => 2,
             ],
             [
-                'scheduled_at' => '2017-07-18 19:00:00',
+                'scheduled_at' => '2017-07-18 12:00:00',
                 'movie_id' => 1,
                 'cinema_id' => 2,
             ],

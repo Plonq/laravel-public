@@ -20,9 +20,11 @@ Route::get('/movie/{id}', 'PagesController@movie')->name('movie');
 Route::get('/cinema/{id}', 'PagesController@cinema')->name('cinema');
 Route::get('/search', 'PagesController@search')->name('search');
 Route::get('/session/{id}', 'PagesController@session')->name('session');
+Route::get('/cart', 'PagesController@cart')->name('cart');
 
 // Auth required
 
 // Ajax routes
 Route::post('/search', 'AjaxController@search');
 Route::post('/sessions', 'AjaxController@get_sessions');
+Route::post('/cart', 'AjaxController@add_to_cart');

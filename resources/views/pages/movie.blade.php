@@ -31,7 +31,7 @@
     <br>
     <h4>Buy Tickets</h4>
     <div class="row">
-        <div class="col-sm-6 col-md-4">
+        <div class="col-sm-6">
             <form id="choose-cinema-form">
                 <div class="form-group">
                     <label for="cinema-select" class="control-label">Choose a cinema: </label>
@@ -44,21 +44,44 @@
                     <input hidden name="movie_id" value="{{$movie->id}}">
                 </div>
             </form>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-12">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Buy Tickets</th>
-                </tr>
-                </thead>
-                <tbody id="session-rows">
-                </tbody>
-            </table>
+            <form hidden id="choose-tickets-form">
+                <div class="form-group">
+                    <label for="session-select" class="control-label">Choose a session: </label>
+                    <select id="session-select" class="form-control" name="session_id">
+
+                    </select>
+                </div>
+                <div hidden id="ticket-quanity-lines">
+                    <div class="form-horizontal">
+                        @foreach ($ticket_types as $ticket_type)
+                            <div class="form-group">
+                                <label for="{{$ticket_type->name}}" class="col-sm-4 control-label">{{$ticket_type->name}}</label>
+                                <label for="{{$ticket_type->name}}" class="col-sm-4 control-label">{{sprintf('$%.2f', $ticket_type->cost)}}</label>
+                                <div class="col-sm-4">
+                                    <select class="form-control" id="{{$ticket_type->name}}" name="{{$ticket_type->id}}">
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                </div>
+                            </div>
+                        @endforeach
+                        <div class="form-group">
+                            <div id="addtocart-button" class="col-sm-12">
+                                <button class="btn btn-default pull-right" type="submit">Add to cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 @endsection
@@ -73,10 +96,18 @@
                 url: '/sessions',
                 data: data,
                 success: function (response) {
-                    console.log(response);
-
                     // Display sessions for chosen cinema
+                    var sessions = JSON.parse(response);
+                    $('#session-select').empty();
 
+                    $('#session-select').append("<option selected disabled hidden style='display: none' value=''></option>");
+
+                    $.each(sessions, function (i, session) {
+                        var option = "<option value='" + session.id + "'>" + session.date + "  " + session.time + "</option>";
+                        $('#session-select').append(option);
+                    });
+
+                    $('#choose-tickets-form').show();
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log(JSON.stringify(jqXHR));
@@ -84,5 +115,34 @@
                 }
             });
         });
+
+        $('#session-select').change(function() {
+            $('#ticket-quanity-lines').show();
+        });
+
+        $('#choose-tickets-form').validate({
+            submitHandler: function (form) {
+                var data = $(form).serialize();
+                // Add session id to data
+                data += '&session_id='+
+
+                $.ajax({
+                    method: 'POST',
+                    url: '/cart',
+                    data: data,
+                    success: function (response) {
+                        console.log(response);
+
+                        // Replace Add to cart button with link to cart
+                        $('#addtocart-button').empty();
+                        $('#addtocart-button').html('<div class="pull-right"><a href="/cart">View Cart</a></div>');
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log(JSON.stringify(jqXHR));
+                        console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+                    }
+                });
+            }
+        })
     </script>
 @endsection

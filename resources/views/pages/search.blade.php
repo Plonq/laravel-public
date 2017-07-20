@@ -67,8 +67,6 @@
                     url: '/search',
                     data: serializedData,
                     success: function (response) {
-                        console.log(response);
-
                         // Display movie search results
                         $('#movie-results').empty();
                         var movies = JSON.parse(response).movies;
