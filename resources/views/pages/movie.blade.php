@@ -123,8 +123,6 @@
         $('#choose-tickets-form').validate({
             submitHandler: function (form) {
                 var data = $(form).serialize();
-                // Add session id to data
-                data += '&session_id='+
 
                 $.ajax({
                     method: 'POST',
