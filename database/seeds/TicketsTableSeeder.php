@@ -15,19 +15,19 @@ class TicketsTableSeeder extends Seeder
             [
                 'quantity' => 2,
                 'ticket_type_id' => 1,
-                'session_id' => 2,
+                'movie_session_id' => 2,
                 'booking_id' => 1,
             ],
             [
                 'quantity' => 2,
                 'ticket_type_id' => 2,
-                'session_id' => 2,
+                'movie_session_id' => 2,
                 'booking_id' => 1,
             ],
             [
                 'quantity' => 1,
                 'ticket_type_id' => 4,
-                'session_id' => 5,
+                'movie_session_id' => 5,
                 'booking_id' => 2,
             ]
         ]);

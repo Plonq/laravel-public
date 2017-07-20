@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Session extends Model
+class MovieSession extends Model
 {
     public function cinema()
     {

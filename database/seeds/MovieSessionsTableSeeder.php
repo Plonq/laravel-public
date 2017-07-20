@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class SessionsTableSeeder extends Seeder
+class MovieSessionsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,7 @@ class SessionsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('sessions')->insert([
+        DB::table('movie_sessions')->insert([
             [
                 'scheduled_at' => '2017-07-18 16:30:00',
                 'movie_id' => 1,

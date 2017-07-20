@@ -11,9 +11,9 @@ class Ticket extends Model
         return $this->belongsTo('App\TicketType');
     }
 
-    public function session()
+    public function movie_session()
     {
-        return $this->belongsTo('App\Session');
+        return $this->belongsTo('App\MovieSession');
     }
 
     public function booking()

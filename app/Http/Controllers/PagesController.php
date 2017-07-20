@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Movie;
-use App\Session;
+use App\MovieSession;
 use App\Cinema;
 use App\TicketType;
-use App\Ticket;
 
 class PagesController extends Controller
 {
@@ -29,7 +28,7 @@ class PagesController extends Controller
     public function movies()
     {
         // Now Showing includes movies with at least one session in the next three days
-        $nowshowing = Movie::whereHas('sessions', function ($query) {
+        $nowshowing = Movie::whereHas('movie_sessions', function ($query) {
             $query->where([
                 ['scheduled_at', '>=', date('Y-m-d 00:00:00')],
                 ['scheduled_at', '<', date('Y-m-d 00:00:00', strtotime('+4 days'))]
@@ -38,7 +37,7 @@ class PagesController extends Controller
 
         // Coming Soon includes movies with sessions more than three days in the future, OR
         // with release date more than 3 days in the future (in case no sessions scheduled).
-        $comingsoon = Movie::whereHas('sessions', function ($query) {
+        $comingsoon = Movie::whereHas('movie_sessions', function ($query) {
             $query->where('scheduled_at', '>', date('Y-m-d 00:00:00', strtotime('+4 days')));
         })->orWhere('release_date', '>', date('Y-m-d', strtotime("+4 days")))->get();
 
@@ -57,7 +56,7 @@ class PagesController extends Controller
             ->where('id', $id)
             ->first();
 
-        $cinemas = Cinema::whereHas('sessions', function($q) use ($id) {
+        $cinemas = Cinema::whereHas('movie_sessions', function($q) use ($id) {
             $q->where('movie_id', $id);
         })
             ->orderBy('city')
@@ -77,7 +76,7 @@ class PagesController extends Controller
     {
         $cinema = Cinema::find($id);
 
-        $sessions = Session::with('movie')
+        $sessions = MovieSession::with('movie')
             ->where('cinema_id', $id)
             ->orderBy('scheduled_at')
             ->get();
@@ -97,7 +96,7 @@ class PagesController extends Controller
         if ($cart) {
             $cart_display = array();
             foreach ($cart as $session_id => $session) {
-                $item['session'] = Session::with('movie')
+                $item['session'] = MovieSession::with('movie')
                     ->with('cinema')
                     ->where('id', $session_id)
                     ->first();

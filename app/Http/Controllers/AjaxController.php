@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Movie;
 use App\Cinema;
-use App\Session;
+use App\MovieSession;
 
 class AjaxController extends Controller
 {
@@ -53,7 +53,7 @@ class AjaxController extends Controller
     public function get_sessions(Request $request)
     {
         // We expect a cinema ID and a movie ID
-        $sessions = Session::where([
+        $sessions = MovieSession::where([
             ['movie_id', $request->get('movie_id')],
             ['cinema_id', $request->get('cinema_id')]
         ])->get();

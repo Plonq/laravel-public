@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSessionsTable extends Migration
+class CreateMovieSessionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateSessionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sessions', function (Blueprint $table) {
+        Schema::create('movie_sessions', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamp('scheduled_at');
             $table->timestamps();
@@ -33,6 +33,6 @@ class CreateSessionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sessions');
+        Schema::dropIfExists('movie_sessions');
     }
 }

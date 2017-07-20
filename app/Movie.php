@@ -16,9 +16,9 @@ class Movie extends Model
         return $this->belongsTo('App\Rating');
     }
 
-    public function sessions()
+    public function movie_sessions()
     {
-        return $this->hasMany('App\Session');
+        return $this->hasMany('App\MovieSession');
     }
 
     public function wishlist_items()
