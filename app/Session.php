@@ -20,4 +20,15 @@ class Session extends Model
     {
         return $this->hasMany('App\Ticket');
     }
+
+    // Calculated Attributes
+    public function getDateAttribute()
+    {
+        return date('l, j F Y', strtotime($this->scheduled_at));
+    }
+
+    public function getTimeAttribute()
+    {
+        return date('g:s A', strtotime($this->scheduled_at));
+    }
 }

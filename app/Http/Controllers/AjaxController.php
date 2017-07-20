@@ -90,4 +90,25 @@ class AjaxController extends Controller
 
         return 'success';
     }
+
+    public function update_cart(Request $request)
+    {
+        $data = $request->all();
+
+        // Get session id and remove so we can loop over the tickets
+        // TODO: Figure out why this doesn't work sometimes
+        $session_id = $data['session_id'];
+        unset($data['session_id']);
+        foreach ($data as $ticket_type => $qty) {
+            if (intval($qty) > 0) {
+                $request->session()->put('cart.'.$session_id.'.tickets.'.$ticket_type, intval($qty));
+            }
+            else {
+                // If qty 0, remove item
+                $request->session()->forget('cart.'.$session_id.'.tickets.'.$ticket_type);
+            }
+        }
+
+        return $data;
+    }
 }

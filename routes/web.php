@@ -28,3 +28,4 @@ Route::get('/cart', 'PagesController@cart')->name('cart');
 Route::post('/search', 'AjaxController@search');
 Route::post('/sessions', 'AjaxController@get_sessions');
 Route::post('/cart', 'AjaxController@add_to_cart');
+Route::post('/updatecart', 'AjaxController@update_cart');
