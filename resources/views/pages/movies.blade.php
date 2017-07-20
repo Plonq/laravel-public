@@ -30,7 +30,7 @@
                                 <td>{{$movie->title}}</td>
                                 <td>{{$movie->genre->name}}</td>
                                 <td>{{$movie->rating->name}} ({{$movie->rating->code}})</td>
-                                <td>{{$movie->release_date}}</td>
+                                <td>{{$movie->release_date_string}}</td>
                                 <td><a class="btn btn-sm btn-default" role='button' href="{{route('movie', $movie->id)}}">Sessions/Info</a></td>
                             </tr>
                         @endforeach
@@ -53,7 +53,7 @@
                                 <td>{{$movie->title}}</td>
                                 <td>{{$movie->genre->name}}</td>
                                 <td>{{$movie->rating->name}} ({{$movie->rating->code}})</td>
-                                <td>{{$movie->release_date}}</td>
+                                <td>{{$movie->release_date_string}}</td>
                             </tr>
                         @endforeach
                         </tbody>

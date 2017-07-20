@@ -25,4 +25,10 @@ class Movie extends Model
     {
         return $this->hasMany('App\WishlistItem');
     }
+
+    // Calculated Attributes
+    public function getReleaseDateStringAttribute()
+    {
+        return date('l, j F Y', strtotime($this->release_date));
+    }
 }

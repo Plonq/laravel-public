@@ -16,8 +16,8 @@
                         <div class="panel-heading">
                             <strong>{{$item['session']->movie->title}}</strong><br>
                             <strong>Cinema:</strong> {{$item['session']->cinema->city}}<br>
-                            <strong>Date:</strong> {{$item['session']->date}}<br>
-                            <strong>Time:</strong> {{$item['session']->time}}
+                            <strong>Date:</strong> {{$item['session']->scheduled_date_string}}<br>
+                            <strong>Time:</strong> {{$item['session']->scheduled_time_string}}
                         </div>
 
                         <table class="table table-default">

@@ -18,7 +18,7 @@
                     </p>
                     <p>
                         <strong>Release Date</strong><br>
-                        {{date('l, j F Y', strtotime($movie->release_date))}}
+                        {{$movie->release_date_string}}
                     </p>
                     <p>
                         <strong>Genre</strong><br>

@@ -22,12 +22,12 @@ class Session extends Model
     }
 
     // Calculated Attributes
-    public function getDateAttribute()
+    public function getScheduledDateStringAttribute()
     {
         return date('l, j F Y', strtotime($this->scheduled_at));
     }
 
-    public function getTimeAttribute()
+    public function getScheduledTimeStringAttribute()
     {
         return date('g:s A', strtotime($this->scheduled_at));
     }
