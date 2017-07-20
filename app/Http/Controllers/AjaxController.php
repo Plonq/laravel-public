@@ -91,6 +91,12 @@ class AjaxController extends Controller
         return 'success';
     }
 
+    /**
+     * Update quantities, or remove item if quantity = 0
+     *
+     * @param Request $request
+     * @return array
+     */
     public function update_cart(Request $request)
     {
         $data = $request->all();
@@ -109,6 +115,31 @@ class AjaxController extends Controller
             }
         }
 
+        // If no more tickets for session, remove session
+        if (empty($request->session()->get('cart.'.$session_id.'.tickets'))) {
+            $request->session()->forget('cart.'.$session_id);
+        }
+
         return $data;
+    }
+
+    /**
+     * Remove an item from the cart
+     *
+     * @param Request $request
+     * @return array
+     */
+    public function remove_cart_item(Request $request)
+    {
+        $data = $request->all();
+
+        $request->session()->forget('cart.'.$data['session_id'].'.tickets.'.$data['ticket_type_id']);
+
+        // If no more tickets for session, remove session
+        if (empty($request->session()->get('cart.'.$data['session_id'].'.tickets'))) {
+            $request->session()->forget('cart.'.$data['session_id']);
+        }
+
+        return 'success';
     }
 }

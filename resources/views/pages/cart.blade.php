@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-sm-8">
             @foreach ($cart as $item)
-                <form role="form" class="cart-update-form">
+                <form class="cart-update-form">
                     <div class="panel panel-default">
                         <!-- Default panel contents -->
                         <div class="panel-heading">
@@ -31,14 +31,14 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($item['tickets'] as $ticket => $qty)
-                                @if (intval($qty) > 0)
+                            @foreach ($item['tickets'] as $ticket)
+                                @if (intval($ticket['quantity']) > 0)
                                     <tr>
-                                        <td>{{$ticket_types[$ticket]->name}}</td>
-                                        <td><input type="number" name="{{$ticket}}" style='width:auto' class="form-control input-sm" value="{{$qty}}" max="20" min="0"></td>
-                                        <td>{{sprintf('$%.2f', ($ticket_types[$ticket]->cost))}}</td>
-                                        <td>{{sprintf('$%.2f', ($ticket_types[$ticket]->cost * intval($qty)))}}</td>
-                                        <td><button value="{{$ticket}}" type="button" class="btn btn-xs btn-danger delete-button"><span class="glyphicon glyphicon-remove"></span></button></td>
+                                        <td>{{$ticket['ticket_type_name']}}</td>
+                                        <td><input type="number" name="{{$ticket['ticket_type_id']}}" style='width:auto' class="form-control input-sm" value="{{$ticket['quantity']}}" max="20" min="0"></td>
+                                        <td>{{sprintf('$%.2f', ($ticket['ticket_type_cost']))}}</td>
+                                        <td>{{sprintf('$%.2f', ($ticket['ticket_type_cost'] * intval($ticket['quantity'])))}}</td>
+                                        <td><button data-ticket-type-id="{{$ticket['ticket_type_id']}}" data-session-id="{{$item['session']->id}}" type="button" class="btn btn-xs btn-danger remove-button"><span class="glyphicon glyphicon-remove"></span></button></td>
                                     </tr>
                                 @endif
                             @endforeach
@@ -54,17 +54,6 @@
             @endforeach
         </div>
         <div class="col-xs-4">
-
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-6">
-
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-6">
 
         </div>
     </div>
@@ -84,8 +73,6 @@
                         data: data,
                         success: function (response) {
                             console.log(response);
-
-
                         },
                         error: function (jqXHR, textStatus, errorThrown) {
                             console.log(JSON.stringify(jqXHR));
@@ -95,6 +82,30 @@
 
                     location.reload();
                 }
+            })
+        });
+
+        // AJAX to delete a ticket type (using the X button)
+        $('.remove-button').each(function () {
+            $(this).click(function () {
+                var session_id = $(this).attr('data-session-id');
+                var ticket_type_id = $(this).attr('data-ticket-type-id');
+                var data = 'session_id='+session_id+'&ticket_type_id='+ticket_type_id;
+                console.log(data);
+                $.ajax({
+                    method: 'POST',
+                    url: '/removecartitem',
+                    data: data,
+                    success: function (response) {
+                        console.log(response);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log(JSON.stringify(jqXHR));
+                        console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+                    }
+                });
+
+                location.reload();
             })
         });
     </script>

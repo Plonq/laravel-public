@@ -101,14 +101,22 @@ class PagesController extends Controller
                     ->with('cinema')
                     ->where('id', $session_id)
                     ->first();
-                $item['tickets'] = $session['tickets'];
+
+                $tickets = array();
+                foreach ($session['tickets'] as $ticket_type_id => $qty) {
+                    $ticket = array();
+                    $ticket['ticket_type_id'] = $ticket_type_id;
+                    $ticket['ticket_type_name'] = TicketType::find($ticket_type_id)->name;
+                    $ticket['ticket_type_cost'] = TicketType::find($ticket_type_id)->cost;
+                    $ticket['quantity'] = $qty;
+                    $tickets[] = $ticket;
+                }
+                $item['tickets'] = $tickets;
                 $cart_display[] = $item;
             }
         }
 
-        $ticket_types = TicketType::all();
-
-        return view('pages.cart', ['cart' => $cart_display, 'ticket_types' => $ticket_types]);
+        return view('pages.cart', ['cart' => $cart_display]);
     }
 
     /**
