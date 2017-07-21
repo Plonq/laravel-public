@@ -57,7 +57,6 @@
             </div>
             <div class="col-sm-4">
                 <div class="panel panel-default">
-                    <!-- Default panel contents -->
                     <div class="panel-heading">
                         <h5>Grand Total</h5>
                     </div>

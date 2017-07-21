@@ -137,10 +137,18 @@ class PagesController extends Controller
     /**
      * Checkout page
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Http\Response
      */
     public function checkout()
     {
-        return view('pages.checkout');
+        // Calculate total
+        $grand_total = 0.0;
+        foreach (session('cart') as $movie_session) {
+            foreach ($movie_session['tickets'] as $ticket_type => $qty) {
+                $grand_total += TicketType::find($ticket_type)->cost * intval($qty);
+            }
+        }
+
+        return view('pages.checkout', ['grand_total' => $grand_total]);
     }
 }
