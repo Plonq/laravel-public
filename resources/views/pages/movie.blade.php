@@ -121,28 +121,5 @@
         $('#session-select').change(function() {
             $('#ticket-quanity-lines').show();
         });
-
-//        $('#choose-tickets-form').validate({
-//            submitHandler: function (form) {
-//                var data = $(form).serialize();
-//
-//                $.ajax({
-//                    method: 'POST',
-//                    url: '/cart',
-//                    data: data,
-//                    success: function (response) {
-//                        console.log(response);
-//
-//                        // Replace Add to cart button with link to cart
-//                        $('#addtocart-button').empty();
-//                        $('#addtocart-button').html('<div class="pull-right"><a href="/cart">View Cart</a></div>');
-//                    },
-//                    error: function (jqXHR, textStatus, errorThrown) {
-//                        console.log(JSON.stringify(jqXHR));
-//                        console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
-//                    }
-//                });
-//            }
-//        })
     </script>
 @endsection

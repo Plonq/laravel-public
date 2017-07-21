@@ -64,30 +64,6 @@
 
 @section('scripts')
     <script>
-        // AJAX to update cart with new quantities or remove ticket types
-//        $('.cart-update-form').each(function () {
-//            $(this).validate({
-//                submitHandler: function (form) {
-//                    var data = $(form).serialize();
-//
-//                    $.ajax({
-//                        method: 'POST',
-//                        url: '/updatecart',
-//                        data: data,
-//                        success: function (response) {
-//                            console.log(response);
-//                        },
-//                        error: function (jqXHR, textStatus, errorThrown) {
-//                            console.log(JSON.stringify(jqXHR));
-//                            console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
-//                        }
-//                    });
-//
-//                    location.reload();
-//                }
-//            })
-//        });
-
         // AJAX to delete a ticket type (using the X button)
         $('.remove-button').each(function () {
             $(this).click(function () {
