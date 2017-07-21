@@ -94,6 +94,7 @@ class PagesController extends Controller
         $cart = session('cart', false);
 
         $cart_display = array();
+        $grand_total = 0.0;
         if ($cart) {
             foreach ($cart as $session_id => $session) {
                 $item['session'] = MovieSession::with('movie')
@@ -105,17 +106,22 @@ class PagesController extends Controller
                 foreach ($session['tickets'] as $ticket_type_id => $qty) {
                     $ticket = array();
                     $ticket['ticket_type_id'] = $ticket_type_id;
-                    $ticket['ticket_type_name'] = TicketType::find($ticket_type_id)->name;
-                    $ticket['ticket_type_cost'] = TicketType::find($ticket_type_id)->cost;
+                    $type = TicketType::find($ticket_type_id);
+                    $ticket['ticket_type_name'] = $type->name;
+                    $ticket['ticket_type_cost'] = $type->cost;
                     $ticket['quantity'] = $qty;
                     $tickets[] = $ticket;
+
+                    $grand_total += ($type->cost * $qty);
                 }
                 $item['tickets'] = $tickets;
                 $cart_display[] = $item;
             }
         }
 
-        return view('pages.cart', ['cart' => $cart_display]);
+
+
+        return view('pages.cart', ['cart' => $cart_display, 'grand_total' => $grand_total]);
     }
 
     /**
@@ -157,5 +163,10 @@ class PagesController extends Controller
     public function search()
     {
         return view('pages.search');
+    }
+
+    public function checkout()
+    {
+        return view('pages.checkout');
     }
 }

@@ -47,16 +47,25 @@
                                 </tbody>
                             </table>
 
-                            <div class="panel-footer">
+                            <div class="panel-footer clearfix">
                                 <input hidden name="session_id" value="{{$item['session']->id}}">
-                                <button type="submit" class="btn btn-primary">Update Quantities</button>
+                                <button type="submit" class="pull-right btn btn-primary">Update Quantities</button>
                             </div>
                         </div>
                     </form>
                 @endforeach
             </div>
-            <div class="col-xs-4">
-
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">
+                        Grand Total
+                    </div>
+                    <div class="panel-body">
+                        <strong style="font-size: 3em">{{sprintf('$%.2f', $grand_total)}}</strong>
+                    </div>
+                </div>
+                <a role="button" class="btn-block btn btn-success" href="{{route('checkout')}}">Checkout</a>
             </div>
         </div>
     @endif
