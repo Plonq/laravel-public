@@ -70,31 +70,3 @@
         </div>
     @endif
 @endsection
-
-@section('scripts')
-    <script>
-        // AJAX to delete a ticket type (using the X button)
-        $('.remove-button').each(function () {
-            $(this).click(function () {
-                var session_id = $(this).attr('data-session-id');
-                var ticket_type_id = $(this).attr('data-ticket-type-id');
-                var data = 'session_id='+session_id+'&ticket_type_id='+ticket_type_id;
-                console.log(data);
-                $.ajax({
-                    method: 'POST',
-                    url: '/removecartitem',
-                    data: data,
-                    success: function (response) {
-                        console.log(response);
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        console.log(JSON.stringify(jqXHR));
-                        console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
-                    }
-                });
-
-                location.reload();
-            })
-        });
-    </script>
-@endsection
