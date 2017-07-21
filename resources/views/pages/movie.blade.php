@@ -44,7 +44,8 @@
                     <input hidden name="movie_id" value="{{$movie->id}}">
                 </div>
             </form>
-            <form hidden id="choose-tickets-form">
+            <form hidden id="choose-tickets-form" method="post" action="{{route('cart')}}">
+                {{csrf_field()}}
                 <div class="form-group">
                     <label for="session-select" class="control-label">Choose a session: </label>
                     <select id="session-select" class="form-control" name="session_id">
@@ -99,6 +100,7 @@
                     // Display sessions for chosen cinema
                     var sessions = JSON.parse(response);
                     $('#session-select').empty();
+                    $('#ticket-quanity-lines').hide();
 
                     $('#session-select').append("<option selected disabled hidden style='display: none' value=''></option>");
 
@@ -120,27 +122,27 @@
             $('#ticket-quanity-lines').show();
         });
 
-        $('#choose-tickets-form').validate({
-            submitHandler: function (form) {
-                var data = $(form).serialize();
-
-                $.ajax({
-                    method: 'POST',
-                    url: '/cart',
-                    data: data,
-                    success: function (response) {
-                        console.log(response);
-
-                        // Replace Add to cart button with link to cart
-                        $('#addtocart-button').empty();
-                        $('#addtocart-button').html('<div class="pull-right"><a href="/cart">View Cart</a></div>');
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        console.log(JSON.stringify(jqXHR));
-                        console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
-                    }
-                });
-            }
-        })
+//        $('#choose-tickets-form').validate({
+//            submitHandler: function (form) {
+//                var data = $(form).serialize();
+//
+//                $.ajax({
+//                    method: 'POST',
+//                    url: '/cart',
+//                    data: data,
+//                    success: function (response) {
+//                        console.log(response);
+//
+//                        // Replace Add to cart button with link to cart
+//                        $('#addtocart-button').empty();
+//                        $('#addtocart-button').html('<div class="pull-right"><a href="/cart">View Cart</a></div>');
+//                    },
+//                    error: function (jqXHR, textStatus, errorThrown) {
+//                        console.log(JSON.stringify(jqXHR));
+//                        console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+//                    }
+//                });
+//            }
+//        })
     </script>
 @endsection

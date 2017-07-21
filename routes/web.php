@@ -27,6 +27,4 @@ Route::get('/cart', 'PagesController@cart')->name('cart');
 // Ajax routes
 Route::post('/search', 'AjaxController@search');
 Route::post('/sessions', 'AjaxController@get_sessions');
-Route::post('/cart', 'AjaxController@add_to_cart');
-Route::post('/updatecart', 'AjaxController@update_cart');
-Route::post('/removecartitem', 'AjaxController@remove_cart_item');
+Route::post('/cart', 'PagesController@update_cart')->name('cart');

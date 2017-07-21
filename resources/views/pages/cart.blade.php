@@ -13,7 +13,8 @@
         <div class="row">
             <div class="col-sm-8">
                 @foreach ($cart as $item)
-                    <form class="cart-update-form">
+                    <form class="cart-update-form" method="post" action="{{route('cart')}}">
+                        {{csrf_field()}}
                         <div class="panel panel-default">
                             <!-- Default panel contents -->
                             <div class="panel-heading">
@@ -30,7 +31,6 @@
                                     <th>Quantity</th>
                                     <th>Ticket Cost</th>
                                     <th>Total</th>
-                                    <th>Delete</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -41,7 +41,6 @@
                                             <td><input type="number" name="{{$ticket['ticket_type_id']}}" style='width:auto' class="form-control input-sm" value="{{$ticket['quantity']}}" max="20" min="0"></td>
                                             <td>{{sprintf('$%.2f', ($ticket['ticket_type_cost']))}}</td>
                                             <td>{{sprintf('$%.2f', ($ticket['ticket_type_cost'] * intval($ticket['quantity'])))}}</td>
-                                            <td><button data-ticket-type-id="{{$ticket['ticket_type_id']}}" data-session-id="{{$item['session']->id}}" type="button" class="btn btn-xs btn-danger remove-button"><span class="glyphicon glyphicon-remove"></span></button></td>
                                         </tr>
                                     @endif
                                 @endforeach
@@ -66,28 +65,28 @@
 @section('scripts')
     <script>
         // AJAX to update cart with new quantities or remove ticket types
-        $('.cart-update-form').each(function () {
-            $(this).validate({
-                submitHandler: function (form) {
-                    var data = $(form).serialize();
-
-                    $.ajax({
-                        method: 'POST',
-                        url: '/updatecart',
-                        data: data,
-                        success: function (response) {
-                            console.log(response);
-                        },
-                        error: function (jqXHR, textStatus, errorThrown) {
-                            console.log(JSON.stringify(jqXHR));
-                            console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
-                        }
-                    });
-
-                    location.reload();
-                }
-            })
-        });
+//        $('.cart-update-form').each(function () {
+//            $(this).validate({
+//                submitHandler: function (form) {
+//                    var data = $(form).serialize();
+//
+//                    $.ajax({
+//                        method: 'POST',
+//                        url: '/updatecart',
+//                        data: data,
+//                        success: function (response) {
+//                            console.log(response);
+//                        },
+//                        error: function (jqXHR, textStatus, errorThrown) {
+//                            console.log(JSON.stringify(jqXHR));
+//                            console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+//                        }
+//                    });
+//
+//                    location.reload();
+//                }
+//            })
+//        });
 
         // AJAX to delete a ticket type (using the X button)
         $('.remove-button').each(function () {
