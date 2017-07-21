@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-sm-8">
                 @foreach ($cart as $item)
-                    <form class="cart-update-form" method="post" action="{{route('cart')}}">
+                    <form class="cart-update-form" method="post" action="{{route('update_cart')}}">
                         {{csrf_field()}}
                         <div class="panel panel-default">
                             <!-- Default panel contents -->

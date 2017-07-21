@@ -44,7 +44,7 @@
                     <input hidden name="movie_id" value="{{$movie->id}}">
                 </div>
             </form>
-            <form hidden id="choose-tickets-form" method="post" action="{{route('cart')}}">
+            <form hidden id="choose-tickets-form" method="post" action="{{route('update_cart')}}">
                 {{csrf_field()}}
                 <div class="form-group">
                     <label for="session-select" class="control-label">Choose a session: </label>

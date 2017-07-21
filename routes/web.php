@@ -28,4 +28,6 @@ Route::get('/checkout', 'PagesController@checkout')->name('checkout')->middlewar
 // Ajax routes
 Route::post('/search', 'AjaxController@search');
 Route::post('/sessions', 'AjaxController@get_sessions');
-Route::post('/cart', 'PagesController@update_cart')->name('cart');
+
+// Standard POST/GET routes
+Route::post('/updatecart', 'PostController@update_cart')->name('update_cart');
