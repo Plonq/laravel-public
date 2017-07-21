@@ -93,8 +93,8 @@ class PagesController extends Controller
     {
         $cart = session('cart', false);
 
+        $cart_display = array();
         if ($cart) {
-            $cart_display = array();
             foreach ($cart as $session_id => $session) {
                 $item['session'] = MovieSession::with('movie')
                     ->with('cinema')
