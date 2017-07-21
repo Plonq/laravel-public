@@ -86,7 +86,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+                    <p>Copyright &copy; Huon Imberger 2017 | CPT375 - Assignment 2</p>
                 </div>
             </div>
             <!-- /.row -->
