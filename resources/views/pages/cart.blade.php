@@ -59,7 +59,7 @@
                 <div class="panel panel-default">
                     <!-- Default panel contents -->
                     <div class="panel-heading">
-                        Grand Total
+                        <h5>Grand Total</h5>
                     </div>
                     <div class="panel-body">
                         <strong style="font-size: 3em">{{sprintf('$%.2f', $grand_total)}}</strong>
