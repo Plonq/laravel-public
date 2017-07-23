@@ -106,7 +106,7 @@ class PagesController extends Controller
                 foreach ($session['tickets'] as $ticket_type_id => $qty) {
                     $ticket = array();
                     $ticket['ticket_type_id'] = $ticket_type_id;
-                    $type = TicketType::find($ticket_type_id);
+                    $type = TicketType::find(intval($ticket_type_id));
                     $ticket['ticket_type_name'] = $type->name;
                     $ticket['ticket_type_cost'] = $type->cost;
                     $ticket['quantity'] = $qty;

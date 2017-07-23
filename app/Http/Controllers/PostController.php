@@ -21,11 +21,13 @@ class PostController extends Controller
         unset($data['session_id']);
 
         foreach ($data as $ticket_type => $qty) {
-            if (intval($qty) > 0) {
-                $request->session()->put('cart.'.$session_id.'.tickets.'.$ticket_type, intval($qty));
-            }
-            else {
-                $request->session()->forget('cart.'.$session_id.'.tickets.'.$ticket_type);
+            if ($ticket_type !== '_token'){
+                if (intval($qty) > 0) {
+                    $request->session()->put('cart.'.$session_id.'.tickets.'.$ticket_type, intval($qty));
+                }
+                else {
+                    $request->session()->forget('cart.'.$session_id.'.tickets.'.$ticket_type);
+                }
             }
         }
 
