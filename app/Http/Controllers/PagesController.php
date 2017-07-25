@@ -141,6 +141,11 @@ class PagesController extends Controller
      */
     public function checkout()
     {
+        // If cart is empty, redirect to homepage
+        if (!session('cart')) {
+            return redirect()->route('home');
+        }
+
         // Calculate total
         $grand_total = 0.0;
         foreach (session('cart') as $movie_session) {

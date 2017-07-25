@@ -31,3 +31,4 @@ Route::post('/sessions', 'AjaxController@get_sessions');
 
 // Standard POST/GET routes
 Route::post('/updatecart', 'PostController@update_cart')->name('update_cart');
+Route::post('/purchasetickets', 'PostController@purchase_tickets')->name('purchase_tickets');

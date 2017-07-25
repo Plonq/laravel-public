@@ -38,4 +38,26 @@ class PostController extends Controller
 
         return redirect()->route('cart');
     }
+
+    /**
+     * Stores booking in database
+     *
+     * @param Request $request
+     */
+    public function purchase_tickets(Request $request)
+    {
+        $data = $request->all();
+
+        $this->validate($request, [
+            'name' => 'required|regex:/^[\pL\s\-]+$/u|min:2|max:50',
+            'address' => 'required|min:5',
+            'city' => 'required|regex:/^[\pL\s\-]+$/u',
+            'postcode' => 'required|numeric|digits:4',
+            'mobile' => 'required|numeric|digits:10',
+            'cc-number' => 'required|numeric|digits_between:14,16',
+            'cc-expiry-day' => 'required|numeric|filled|min:1|max:31',
+            'cc-expiry-month' => 'required|numeric|filled|min:1|max:12',
+            'cc-cvc' => 'required|numeric|digits_between:3,4'
+        ]);
+    }
 }
