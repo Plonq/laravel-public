@@ -48,6 +48,7 @@
                             </table>
 
                             <div class="panel-footer clearfix">
+                                To remove an item, reduce its quantity to zero.
                                 <input hidden name="session_id" value="{{$item['session']->id}}">
                                 <button type="submit" class="pull-right btn btn-primary">Update Quantities</button>
                             </div>
