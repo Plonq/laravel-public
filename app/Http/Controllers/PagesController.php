@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Booking;
 use App\Movie;
 use App\MovieSession;
 use App\Cinema;
@@ -155,5 +155,17 @@ class PagesController extends Controller
         }
 
         return view('pages.checkout', ['grand_total' => $grand_total]);
+    }
+
+    /**
+     * Displays details about a single booking
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function booking($id)
+    {
+        $booking = Booking::find($id);
+
+        return view('pages.booking', ['booking' => $booking]);
     }
 }

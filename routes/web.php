@@ -22,6 +22,8 @@ Route::get('/search', 'PagesController@search')->name('search');
 Route::get('/session/{id}', 'PagesController@session')->name('session');
 Route::get('/cart', 'PagesController@cart')->name('cart');
 Route::get('/checkout', 'PagesController@checkout')->name('checkout')->middleware('auth');
+Route::get('/myaccount', 'PagesController@myaccount')->name('myaccount')->middleware('auth');
+Route::get('/booking/{id}', 'PagesController@booking')->name('booking')->middleware('auth');
 
 // Auth required
 
@@ -31,4 +33,4 @@ Route::post('/sessions', 'AjaxController@get_sessions');
 
 // Standard POST/GET routes
 Route::post('/updatecart', 'PostController@update_cart')->name('update_cart');
-Route::post('/purchasetickets', 'PostController@purchase_tickets')->name('purchase_tickets');
+Route::post('/checkout', 'PostController@checkout')->name('checkout');

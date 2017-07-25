@@ -4,7 +4,7 @@
     <header class="page-header">
         <h3>Checkout</h3>
     </header>
-    <form id="checkout-form" method="post" action="{{route('purchase_tickets')}}">
+    <form id="checkout-form" method="post" action="{{route('checkout')}}">
         {{csrf_field()}}
         <div class="row">
             <div class="col-sm-4">
@@ -39,26 +39,28 @@
             <div class="col-sm-4">
                 <h4>Payment Details</h4>
                 <div class="form-group">
-                    <label for="cc-number">Credit Card Number</label>
-                    <input class="form-control" id="cc-number" name="cc-number" placeholder="e.g. 1111222233334444" value="{{ old('cc-number') }}">
+                    <label for="cc_number">Credit Card Number</label>
+                    <input class="form-control" id="cc_number" name="cc_number" placeholder="e.g. 1111222233334444" value="{{ old('cc_number') }}">
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
-                        <label for="cc-expiry-month">Expiry Month</label>
-                        <input class="form-control" id="cc-expiry-month" name="cc-expiry-month" value="{{ old('cc-expiry-month') }}">
+                        <div class="form-group">
+                            <label for="cc_expiry_month">Expiry Month</label>
+                            <input type="number" class="form-control" id="cc_expiry_month" name="cc_expiry_month" value="{{ old('cc_expiry_month') }}" min="1" max="12">
+                        </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label for="cc-expiry-year">Expiry Year</label>
-                            <input class="form-control" id="cc-expiry-year" name="cc-expiry-year" value="{{ old('cc-expiry-year') }}">
+                            <label for="cc_expiry_year">Expiry Year</label>
+                            <input type="number" class="form-control" id="cc_expiry_year" name="cc_expiry_year" value="{{ old('cc_expiry_year') }}" min="2000" max="3000">
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label for="cc-cvc">CVC</label>
-                            <input class="form-control" id="cc-cvc" name="cc-cvc" placeholder="e.g. 123" value="{{ old('cc-cvc') }}">
+                            <label for="cc_cvc">CVC</label>
+                            <input class="form-control" id="cc_cvc" name="cc_cvc" placeholder="e.g. 123" value="{{ old('cc_cvc') }}">
                         </div>
                     </div>
                 </div>
