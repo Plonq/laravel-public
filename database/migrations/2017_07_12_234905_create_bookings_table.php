@@ -15,13 +15,18 @@ class CreateBookingsTable extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->string('address');
+            $table->string('city');
+            $table->string('postcode');
+            $table->string('cc_number');
+            $table->integer('cc_expiry_month');
+            $table->integer('cc_expiry_year');
+            $table->string('cc_cvc');
             $table->timestamps();
 
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-
-            $table->integer('payment_detail_id')->unsigned();
-            $table->foreign('payment_detail_id')->references('id')->on('payment_details');
         });
     }
 

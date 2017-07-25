@@ -27,11 +27,6 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function payment_details()
-    {
-        return $this->hasMany('App\PaymentDetail');
-    }
-
     public function bookings()
     {
         return $this->hasMany('App\Booking');
