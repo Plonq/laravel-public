@@ -7,6 +7,8 @@ use App\Movie;
 use App\MovieSession;
 use App\Cinema;
 use App\TicketType;
+use App\WishlistItem;
+use Illuminate\Support\Facades\Auth;
 
 class PagesController extends Controller
 {
@@ -27,19 +29,8 @@ class PagesController extends Controller
      */
     public function movies()
     {
-        // Now Showing includes movies with at least one session in the next three days
-        $nowshowing = Movie::whereHas('movie_sessions', function ($query) {
-            $query->where([
-                ['scheduled_at', '>=', date('Y-m-d 00:00:00')],
-                ['scheduled_at', '<', date('Y-m-d 00:00:00', strtotime('+4 days'))]
-            ]);
-        })->get();
-
-        // Coming Soon includes movies with sessions more than three days in the future, OR
-        // with release date more than 3 days in the future (in case no sessions scheduled).
-        $comingsoon = Movie::whereHas('movie_sessions', function ($query) {
-            $query->where('scheduled_at', '>', date('Y-m-d 00:00:00', strtotime('+4 days')));
-        })->orWhere('release_date', '>', date('Y-m-d', strtotime("+4 days")))->get();
+        $nowshowing = Movie::now_showing()->get();
+        $comingsoon = Movie::coming_soon()->get();
 
         return view('pages.movies', ['nowshowing' => $nowshowing, 'comingsoon' => $comingsoon]);
     }
@@ -167,5 +158,21 @@ class PagesController extends Controller
         $booking = Booking::find($id);
 
         return view('pages.booking', ['booking' => $booking]);
+    }
+
+    /**
+     * Shows logged in user's account details and wishlist
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function myaccount()
+    {
+        $wishlist_items = WishlistItem::where('user_id', Auth::id())
+            ->with('movie')
+            ->get();
+        $bookings = Booking::where('user_id', Auth::id())->get()->all();
+
+
+        return view('pages.myaccount', ['wishlist_items' => $wishlist_items, 'bookings' => $bookings]);
     }
 }

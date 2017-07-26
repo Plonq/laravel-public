@@ -31,4 +31,36 @@ class Movie extends Model
     {
         return date('l, j F Y', strtotime($this->release_date));
     }
+
+    /**
+     * Returns array of movies coming soon
+     *
+     * Coming Soon includes movies with sessions more than three days in the future, OR
+     * with release date more than 3 days in the future (in case no sessions scheduled).
+     *
+     * @return mixed
+     */
+    public static function coming_soon()
+    {
+        return Movie::whereHas('movie_sessions', function ($query) {
+            $query->where('scheduled_at', '>', date('Y-m-d 00:00:00', strtotime('+4 days')));
+        })->orWhere('release_date', '>', date('Y-m-d', strtotime("+4 days")));
+    }
+
+    /**
+     * Returns array of movies now showing
+     *
+     * Now Showing includes movies with at least one session in the next three days
+     *
+     * @return mixed
+     */
+    public static function now_showing()
+    {
+        return Movie::whereHas('movie_sessions', function ($query) {
+            $query->where([
+                ['scheduled_at', '>=', date('Y-m-d 00:00:00')],
+                ['scheduled_at', '<', date('Y-m-d 00:00:00', strtotime('+4 days'))]
+            ]);
+        });
+    }
 }

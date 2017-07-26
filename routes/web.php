@@ -21,11 +21,18 @@ Route::get('/cinema/{id}', 'PagesController@cinema')->name('cinema');
 Route::get('/search', 'PagesController@search')->name('search');
 Route::get('/session/{id}', 'PagesController@session')->name('session');
 Route::get('/cart', 'PagesController@cart')->name('cart');
+
+// Auth required
 Route::get('/checkout', 'PagesController@checkout')->name('checkout')->middleware('auth');
 Route::get('/myaccount', 'PagesController@myaccount')->name('myaccount')->middleware('auth');
 Route::get('/booking/{id}', 'PagesController@booking')->name('booking')->middleware('auth');
 
-// Auth required
+// Wishlist CRUD (index handled by 'myaccount' route above)
+Route::get('/wishlist/create', 'WishlistController@create')->name('wishlist.create')->middleware('auth');
+Route::post('/wishlist/store', 'WishlistController@store')->name('wishlist.store')->middleware('auth');
+Route::delete('/wishlist/destroy/{id}', 'WishlistController@destroy')->name('wishlist.destroy')->middleware('auth');
+Route::get('/wishlist/edit/{id}', 'WishlistController@edit')->name('wishlist.edit')->middleware('auth');
+Route::patch('/wishlist/update/{id}', 'WishlistController@update')->name('wishlist.update')->middleware('auth');
 
 // Ajax routes
 Route::post('/search', 'AjaxController@search');
