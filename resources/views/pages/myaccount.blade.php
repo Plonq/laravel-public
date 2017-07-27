@@ -32,7 +32,21 @@
     </div>
     <div class="row">
         <div class="col-xs-12">
-            @include('wishlist.index')
+            <h4>Movie Wish List</h4>
+
+            @if (session('message'))
+                <div class="alert alert-info">
+                    <p>{{ session('message') }}</p>
+                </div>
+            @endif
+
+            @if ($wishlist_items->isEmpty())
+                <p>You do not have any movies on your wish list.</p>
+            @else
+                @component('wishlist.index', ['wishlist_items' => $wishlist_items->all()])
+                @endcomponent
+            @endif
+            <a role="button" class="btn btn-default" href="{{ route('wishlist.create') }}">Add Movie</a>
         </div>
     </div>
 @endsection

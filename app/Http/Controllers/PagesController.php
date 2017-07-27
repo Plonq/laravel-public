@@ -105,7 +105,7 @@ class PagesController extends Controller
         $wishlist_items = WishlistItem::where('user_id', Auth::id())
             ->with('movie')
             ->get();
-        $bookings = Booking::where('user_id', Auth::id())->get()->all();
+        $bookings = Booking::where('user_id', Auth::id())->get();
 
 
         return view('pages.myaccount', ['wishlist_items' => $wishlist_items, 'bookings' => $bookings]);
