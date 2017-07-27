@@ -15,7 +15,7 @@
                 <div class="carousel-inner">
                     @foreach($featured_movies as $movie)
                         <div class="item {!! $loop->first ? 'active' : '' !!}">
-                            <a href="#">
+                            <a href="{{ route('movie', $movie->id) }}">
                                 <img src="{{ $movie->cover_path }}">
                             </a>
                         </div>
