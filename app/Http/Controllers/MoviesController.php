@@ -34,8 +34,10 @@ class MoviesController extends Controller
             ->where('id', $id)
             ->first();
 
+        // Find cinemas with session scheduled in the future (ignore past sessions)
         $cinemas = Cinema::whereHas('movie_sessions', function($q) use ($id) {
-            $q->where('movie_id', $id);
+            $q->where('movie_id', $id)
+                ->where('scheduled_at', '>', date('Y-m-d H:i:s'));
         })
             ->orderBy('city')
             ->get();
