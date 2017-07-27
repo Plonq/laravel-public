@@ -39,6 +39,6 @@ Route::patch('/wishlist/update/{id}', 'WishlistController@update')->name('wishli
 Route::post('/search', 'AjaxController@search');
 Route::post('/sessions', 'AjaxController@get_sessions');
 
-// Standard POST/GET routes
+// Standard POST routes
 Route::post('/updatecart', 'PostController@update_cart')->name('update_cart');
 Route::post('/checkout', 'PostController@checkout')->name('checkout');
