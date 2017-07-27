@@ -18,7 +18,7 @@
     @endif
     <div class="row">
         <div class="col-sm-12">
-            {!! Form::open(array('route' => 'wishlist.store','method'=>'POST')) !!}
+            {!! Form::open(['route' => 'wishlist.store', 'method'=>'POST']) !!}
             @include('wishlist.form')
             <button type="submit" class="pull-right btn btn-success">Add Movie to Wish List</button>
             {!! Form::close() !!}

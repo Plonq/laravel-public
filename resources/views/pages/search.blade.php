@@ -6,15 +6,14 @@
     </header>
     <div class="row">
         <div class="col-sm-6">
-            <form class="form" id="movie-search-form">
-                {{ csrf_field() }}
-                <div class="input-group">
-                    <input id="movie-search-field" name="search-term" type="text" class="form-control" placeholder="Enter search term...">
-                    <span class="input-group-btn">
-                        <button id="movie-search-button" class="btn btn-default" type="submit">Search</button>
-                    </span>
-                </div>
-            </form>
+            {!! Form::open(['id' => 'movie-search-form']) !!}
+            <div class="input-group">
+                {!! Form::text('search-term', null, ['class' => 'form-control', 'placeholder' => 'Enter search term...']) !!}
+                <span class="input-group-btn">
+                    {!! Form::submit('Search', ['class' => 'btn btn-default']) !!}
+                </span>
+            </div>
+            {!! Form::close() !!}
             <br>
         </div>
     </div>

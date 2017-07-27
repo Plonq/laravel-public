@@ -13,8 +13,7 @@
         <div class="row">
             <div class="col-sm-8">
                 @foreach ($cart as $item)
-                    <form class="cart-update-form" method="post" action="{{route('update_cart')}}">
-                        {{csrf_field()}}
+                    {!! Form::open(['route' => 'update_cart', 'method'=>'POST']) !!}
                         <div class="panel panel-default">
                             <!-- Default panel contents -->
                             <div class="panel-heading">
@@ -38,7 +37,9 @@
                                     @if (intval($ticket['quantity']) > 0)
                                         <tr>
                                             <td>{{$ticket['ticket_type_name']}}</td>
-                                            <td><input type="number" name="{{$ticket['ticket_type_id']}}" style='width:auto' class="form-control input-sm" value="{{$ticket['quantity']}}" max="20" min="0"></td>
+                                            <td>
+                                                {!! Form::number($ticket['ticket_type_id'], $ticket['quantity'], ['class' => 'form-control input-sm', 'style' => 'width:auto', 'min' => '0', 'max' => '20']) !!}
+                                            </td>
                                             <td>{{sprintf('$%.2f', ($ticket['ticket_type_cost']))}}</td>
                                             <td>{{sprintf('$%.2f', ($ticket['ticket_type_cost'] * intval($ticket['quantity'])))}}</td>
                                         </tr>
@@ -50,10 +51,10 @@
                             <div class="panel-footer clearfix">
                                 To remove an item, reduce its quantity to zero.
                                 <input hidden name="session_id" value="{{$item['session']->id}}">
-                                <button type="submit" class="pull-right btn btn-primary">Update Quantities</button>
+                                {!! Form::submit('Update Quantities', ['class' => 'pull-right btn btn-primary']) !!}
                             </div>
                         </div>
-                    </form>
+                    {!! Form::close() !!}
                 @endforeach
             </div>
             <div class="col-sm-4">
