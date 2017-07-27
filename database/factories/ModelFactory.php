@@ -22,3 +22,17 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+///** @var \Illuminate\Database\Eloquent\Factory $factory */
+//$factory->define(App\Movie::class, function (Faker\Generator $faker) {
+//
+//    $
+//
+//    return [
+//        'title' => $faker->title,
+//        'release_date' => $faker->unique()->safeEmail,
+//        'genre_id' => $password ?: $password = bcrypt('secret'),
+//        'rating_id' => str_random(10),
+//        'featured' => false
+//    ];
+//});

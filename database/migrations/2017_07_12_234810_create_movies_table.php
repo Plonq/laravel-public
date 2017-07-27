@@ -18,6 +18,8 @@ class CreateMoviesTable extends Migration
             $table->string('title');
             $table->date('release_date');
             $table->boolean('featured');
+            $table->string('poster_path');
+            $table->string('cover_path');
             $table->timestamps();
 
             $table->integer('genre_id')->unsigned();
