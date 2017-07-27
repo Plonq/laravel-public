@@ -23,16 +23,30 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-///** @var \Illuminate\Database\Eloquent\Factory $factory */
-//$factory->define(App\Movie::class, function (Faker\Generator $faker) {
-//
-//    $
-//
-//    return [
-//        'title' => $faker->title,
-//        'release_date' => $faker->unique()->safeEmail,
-//        'genre_id' => $password ?: $password = bcrypt('secret'),
-//        'rating_id' => str_random(10),
-//        'featured' => false
-//    ];
-//});
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Movie::class, function (Faker\Generator $faker) {
+
+    $title = str_replace('.', '', $faker->sentence($nbWords = 3, $variableNbWords = true));
+
+    return [
+        'title' => $title,
+        'release_date' => $faker->dateTimeBetween($startDate = '-2 days', $endDate = '+15 days', $timezone = date_default_timezone_get())->format('Y-m-d'),
+        'poster_path' => $faker->imageUrl(500, 750, 'abstract', true, $title),
+        'cover_path' => '',
+        'featured' => false,
+        'genre_id' => App\Genre::inRandomOrder()->first()->id,
+        'rating_id' => App\Rating::inRandomOrder()->first()->id
+    ];
+});
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\MovieSession::class, function (Faker\Generator $faker) {
+
+    $movie = App\Movie::inRandomOrder()->first();
+
+    return [
+        'scheduled_at' => $faker->dateTimeBetween($startDate = $movie->release_date, $endDate = '+14 days', $timezone = date_default_timezone_get())->format('Y-m-d H:i:s'),
+        'cinema_id' => App\Cinema::inRandomOrder()->first()->id,
+        'movie_id' => $movie->id
+    ];
+});
