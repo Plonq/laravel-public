@@ -18,7 +18,12 @@
     <div class="row">
         <div class="col-sm-12">
             <h4>Movies</h4>
-            @include('movies.table')
+            @if ($movies->isEmpty())
+                <p>Sorry, no movies currently showing at this cinema.</p>
+            @else
+                @component('movies.table', ['movies' => $movies->all()])
+                @endcomponent
+            @endif
         </div>
     </div>
 @endsection
