@@ -23,60 +23,6 @@ class PagesController extends Controller
     }
 
     /**
-     * Movie page.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function movies()
-    {
-        $nowshowing = Movie::now_showing()->get();
-        $comingsoon = Movie::coming_soon()->get();
-
-        return view('pages.movies', ['nowshowing' => $nowshowing, 'comingsoon' => $comingsoon]);
-    }
-
-    /**
-     * Movie detail/info page.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function movie($id)
-    {
-        $movie = Movie::with('genre')
-            ->with('rating')
-            ->where('id', $id)
-            ->first();
-
-        $cinemas = Cinema::whereHas('movie_sessions', function($q) use ($id) {
-            $q->where('movie_id', $id);
-        })
-            ->orderBy('city')
-            ->get();
-
-        $ticket_types = TicketType::all();
-
-        return view('pages.movie', ['movie' => $movie, 'cinemas' => $cinemas, 'ticket_types' => $ticket_types]);
-    }
-
-    /**
-     * Cinema detail/info page.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function cinema($id)
-    {
-        $cinema = Cinema::find($id);
-
-        $movies = Movie::whereHas('movie_sessions', function($q) use ($id) {
-            $q->where('cinema_id', $id);
-        })
-            ->orderBy('title')
-            ->get();
-
-        return view('pages.cinema', ['cinema' => $cinema, 'movies' => $movies]);
-    }
-
-    /**
      * Display the user's cart
      *
      * @return \Illuminate\Http\Response
@@ -147,18 +93,6 @@ class PagesController extends Controller
         }
 
         return view('pages.checkout', ['grand_total' => $grand_total]);
-    }
-
-    /**
-     * Displays details about a single booking
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function booking($id)
-    {
-        $booking = Booking::find($id);
-
-        return view('pages.booking', ['booking' => $booking]);
     }
 
     /**

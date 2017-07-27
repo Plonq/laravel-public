@@ -100,7 +100,7 @@
                                     "  <td>" + cinema.address + "</td>",
                                     "  <td>" + cinema.city + "</td>",
                                     "  <td>" + cinema.postcode + "</td>",
-                                    "  <td><a class='btn btn-sm btn-default' role='button' href='/cinema/" + cinema.id + "'>Info/Sessions</a></td>",
+                                    "  <td><a class='btn btn-sm btn-default' role='button' href='/cinema/" + cinema.id + "'>Info</a></td>",
                                     "</tr>"
                                 ].join("\n"));
                                 $('#cinema-results').append(cinema_row_html);
