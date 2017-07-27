@@ -16,7 +16,6 @@ Auth::routes();
 // Public accessible
 Route::get('/', 'PagesController@home')->name('home');
 Route::get('/search', 'PagesController@search')->name('search');
-Route::get('/session/{id}', 'PagesController@session')->name('session');
 Route::get('/cart', 'PagesController@cart')->name('cart');
 
 Route::get('/movies', 'MoviesController@index')->name('movies');
