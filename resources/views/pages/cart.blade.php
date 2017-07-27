@@ -4,9 +4,6 @@
     <header class="page-header">
         <h3>Your Cart</h3>
     </header>
-    {{--<pre>--}}
-        {{--@php(var_dump($cart))--}}
-    {{--</pre>--}}
     @if (empty($cart))
         <p>There are no items in your cart.</p>
     @else
