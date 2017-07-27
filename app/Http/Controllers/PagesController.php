@@ -67,12 +67,13 @@ class PagesController extends Controller
     {
         $cinema = Cinema::find($id);
 
-        $sessions = MovieSession::with('movie')
-            ->where('cinema_id', $id)
-            ->orderBy('scheduled_at')
+        $movies = Movie::whereHas('movie_sessions', function($q) use ($id) {
+            $q->where('cinema_id', $id);
+        })
+            ->orderBy('title')
             ->get();
 
-        return view('pages.cinema', ['cinema' => $cinema, 'sessions' => $sessions]);
+        return view('pages.cinema', ['cinema' => $cinema, 'movies' => $movies]);
     }
 
     /**
