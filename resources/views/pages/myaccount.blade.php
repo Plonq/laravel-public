@@ -6,18 +6,16 @@
     </header>
     <div class="row">
         <div class="col-xs-12">
-            <div class="form-horizontal">
-                <div class="form-group">
-                    <label for="account-name" class="col-sm-2 control-label">Account Name:</label>
-                    <div class="col-sm-10">
-                        <p class="form-control-static" id="account-name">{{ Auth::user()->name }}</p>
-                    </div>
+            <div class="row">
+                <label class="col-sm-2 text-right">Account Name:</label>
+                <div class="col-sm-10">
+                    <p>{{ Auth::user()->name }}</p>
                 </div>
-                <div class="form-group">
-                    <label for="account-email" class="col-sm-2 control-label">Account Email:</label>
-                    <div class="col-sm-10">
-                        <p class="form-control-static" id="account-email">{{ Auth::user()->email }}</p>
-                    </div>
+            </div>
+            <div class="row">
+                <label class="col-sm-2 text-right">Account Email:</label>
+                <div class="col-sm-10">
+                    <p>{{ Auth::user()->email }}</p>
                 </div>
             </div>
         </div>
