@@ -27,4 +27,10 @@ class Ticket extends Model
     {
         return $this->belongsTo('App\Booking');
     }
+
+    // Calculated Attributes
+    public function getTotalCostAttribute()
+    {
+        return ($this->ticket_type()->first()->cost * $this->quantity);
+    }
 }

@@ -15,7 +15,8 @@ class BookingsController extends Controller
     public function show($id)
     {
         $booking = Booking::find($id);
+        $tickets = $booking->tickets()->with('ticket_type')->get();
 
-        return view('bookings.show', ['booking' => $booking]);
+        return view('bookings.show', ['booking' => $booking, 'tickets' => $tickets]);
     }
 }

@@ -27,4 +27,14 @@ class Booking extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    // Calculated Attributes
+    public function getTotalCostAttribute()
+    {
+        $total = 0.0;
+        foreach ($this->tickets()->get()->all() as $ticket) {
+            $total += $ticket->total_cost;
+        }
+        return ($total);
+    }
 }

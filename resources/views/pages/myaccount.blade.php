@@ -25,8 +25,11 @@
     <div class="row">
         <div class="col-xs-12">
             <h4>Bookings</h4>
-            @if (empty($bookings))
+            @if ($bookings->isEmpty())
                 <p>You have not made any bookings. Why don't you check out the <a href="{{ route('movies') }}">Movies</a> page?</p>
+            @else
+                @component('bookings.table', ['bookings' => $bookings->all()])
+                @endcomponent
             @endif
         </div>
     </div>

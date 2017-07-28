@@ -26,7 +26,8 @@ Route::get('/cinema/{id}', 'CinemasController@show')->name('cinema');
 // Auth required
 Route::get('/checkout', 'PagesController@checkout')->name('checkout')->middleware('auth');
 Route::get('/myaccount', 'PagesController@myaccount')->name('myaccount')->middleware('auth');
-Route::get('/booking/{id}', 'PagesController@booking')->name('booking')->middleware('auth');
+
+Route::get('/booking/{id}', 'BookingsController@show')->name('booking')->middleware('auth');
 
 // Wishlist CRUD (index handled by 'myaccount' route above)
 Route::get('/wishlist/create', 'WishlistController@create')->name('wishlist.create')->middleware('auth');

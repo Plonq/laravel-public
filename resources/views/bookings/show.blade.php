@@ -13,30 +13,38 @@
             </div>
         </div>
     @endif
-    <div class="form-horizontal">
-        <div class="form-group">
-            <label for="booking-id" class="col-sm-2 control-label">Booking ID:</label>
+        <div class="row">
+            <label class="col-sm-2 text-right">Booking ID:</label>
             <div class="col-sm-10">
-                <p class="form-control-static" id="booking-id">{{ $booking->id }}</p>
+                <p>{{ $booking->id }}</p>
             </div>
         </div>
-        <div class="form-group">
-            <label for="name" class="col-sm-2 control-label">Name:</label>
+        <div class="row">
+            <label class="col-sm-2 text-right">Name:</label>
             <div class="col-sm-10">
-                <p class="form-control-static" id="name">{{ $booking->name }}</p>
+                <p>{{ $booking->name }}</p>
             </div>
         </div>
-        <div class="form-group">
-            <label for="address" class="col-sm-2 control-label">Address:</label>
+        <div class="row">
+            <label class="col-sm-2 text-right">Address:</label>
             <div class="col-sm-10">
-                <p class="form-control-static" id="address">{{ $booking->address }}<br>{{ $booking->city }}, {{ $booking->postcode }}</p>
+                <p>{{ $booking->address }}<br>{{ $booking->city }}, {{ $booking->postcode }}</p>
             </div>
         </div>
-        <div class="form-group">
-            <label for="cc-number" class="col-sm-2 control-label">Credit Card Used:</label>
+        <div class="row">
+            <label class="col-sm-2 text-right">Credit Card Used:</label>
             <div class="col-sm-10">
-                <p class="form-control-static" id="cc-number">{{ sprintf('XXXX XXXX XXXX %s', substr($booking->cc_number, -4)) }}</p>
+                <p>{{ sprintf('XXXX XXXX XXXX %s', substr($booking->cc_number, -4)) }}</p>
             </div>
         </div>
-    </div>
+        <div class="row">
+            <label class="col-sm-2 text-right">Total Cost:</label>
+            <div class="col-sm-10">
+                <p>{{ sprintf('$%.2f', ($booking->total_cost)) }}</p>
+            </div>
+        </div>
+
+    <h4>Tickets</h4>
+    @component('tickets.table', ['tickets' => $tickets->all()])
+    @endcomponent
 @endsection
