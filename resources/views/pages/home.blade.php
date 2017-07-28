@@ -34,7 +34,4 @@
             </div>
         </div>
     </div>
-
-
-    <h3>Take the family to the cinema today!</h3>
 @endsection
