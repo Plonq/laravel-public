@@ -90,6 +90,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
+            <hr>
             <p>Copyright &copy; Huon Imberger 2017 | CPT375 - Assignment 2</p>
         </div>
     </footer>
