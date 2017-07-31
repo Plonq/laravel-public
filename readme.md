@@ -1,4 +1,4 @@
-# Mavericks Inc. Movies #
+# Mavericks Inc. Movies - Part A Laravel #
 
 PCP375 Web Database Applications - Assignment 2
 
@@ -8,9 +8,4 @@ https://github.com/Plonq/assignment2
 
 ### External Resources Used ###
 
-#### Part A ####
-
-
-
-#### Part B ####
-
+* Cyborg Bootstrap Theme - https://bootswatch.com/
