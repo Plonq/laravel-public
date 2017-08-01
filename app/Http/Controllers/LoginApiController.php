@@ -21,8 +21,6 @@ class LoginApiController extends Controller
 
         $admin = Admin::where('email', '=', $data['email'])->first();
 
-//        dd($admin, bcrypt($data['password']));
-
         if ($admin !== null) {
             // Now check password
             if (password_verify($data['password'], $admin->password)) {
