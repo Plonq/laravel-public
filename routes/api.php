@@ -22,16 +22,8 @@ Route::put('movies/{movie}', 'MoviesApiController@update');
 Route::delete('movies/{movie}', 'MoviesApiController@delete');
 
 Route::get('genres', 'GenresApiController@index');
-Route::get('genres/{genre}', 'GenresApiController@show');
-Route::post('genres', 'GenresApiController@store');
-Route::put('genres/{genre}', 'GenresApiController@update');
-Route::delete('genres/{genre}', 'GenresApiController@delete');
 
 Route::get('ratings', 'RatingsApiController@index');
-Route::get('ratings/{rating}', 'RatingsApiController@show');
-Route::post('ratings', 'RatingsApiController@store');
-Route::put('ratings/{rating}', 'RatingsApiController@update');
-Route::delete('ratings/{rating}', 'RatingsApiController@delete');
 
 Route::get('movie_sessions', 'MovieSessionsApiController@index');
 Route::get('movie_sessions/{movie_session}', 'MovieSessionsApiController@show');
