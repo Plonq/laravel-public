@@ -37,10 +37,10 @@ class MoviesApiController extends Controller
         $movie = Movie::create($request->all());
 
         if ($movie) {
-            return json_encode(['result' => 'success']);
+            return response()->json($movie, 201);
         }
         else {
-            return json_encode(['result' => 'fail']);
+            return response()->json(['error' => 'Could not create movie'], 500);
         }
     }
 
