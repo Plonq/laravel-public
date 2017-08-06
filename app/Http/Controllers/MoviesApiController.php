@@ -52,6 +52,11 @@ class MoviesApiController extends Controller
      */
     public function show(Movie $movie)
     {
+        $movie = Movie::with('genre')
+            ->with('rating')
+            ->where('id', $movie->id)
+            ->first();
+        $movie['release_date_string'] = $movie->release_date_string;
         return $movie;
     }
 
