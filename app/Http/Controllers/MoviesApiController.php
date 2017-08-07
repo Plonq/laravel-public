@@ -69,7 +69,9 @@ class MoviesApiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Movie::find($id)->update($request->all());
+
+        return response('', 204);
     }
 
     /**
@@ -82,6 +84,6 @@ class MoviesApiController extends Controller
     {
         Movie::destroy($id);
 
-        return response()->json(['message' => 'Movie deleted successfully'], 204);
+        return response('', 204);
     }
 }
