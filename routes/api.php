@@ -26,6 +26,7 @@ Route::get('genres', 'GenresApiController@index');
 Route::get('ratings', 'RatingsApiController@index');
 
 Route::get('movie_sessions', 'MovieSessionsApiController@index');
+Route::get('movie_sessions/by_movie/{movie_id}', 'MovieSessionsApiController@for_movie');
 Route::get('movie_sessions/{movie_session}', 'MovieSessionsApiController@show');
 Route::post('movie_sessions', 'MovieSessionsApiController@store');
 Route::put('movie_sessions/{movie_session}', 'MovieSessionsApiController@update');
@@ -39,9 +40,6 @@ Route::delete('cinemas/{cinema}', 'CinemasApiController@delete');
 
 Route::get('bookings', 'BookingsApiController@index');
 Route::get('bookings/{booking}', 'BookingsApiController@show');
-Route::post('bookings', 'BookingsApiController@store');
-Route::put('bookings/{booking}', 'BookingsApiController@update');
-Route::delete('bookings/{booking}', 'BookingsApiController@delete');
 
 Route::get('tickets', 'TicketsApiController@index');
 Route::get('tickets/{ticket}', 'TicketsApiController@show');

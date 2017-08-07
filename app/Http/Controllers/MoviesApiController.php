@@ -16,6 +16,7 @@ class MoviesApiController extends Controller
     {
         $movies = Movie::with('genre')
             ->with('rating')
+            ->orderBy('title')
             ->get();
 
         foreach ($movies->all() as $movie) {

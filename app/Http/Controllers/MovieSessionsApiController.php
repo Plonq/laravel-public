@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\MovieSession;
 use Illuminate\Http\Request;
 
 class MovieSessionsApiController extends Controller
@@ -9,11 +10,24 @@ class MovieSessionsApiController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return array
      */
     public function index()
     {
-        //
+        return MovieSession::with('cinema')->get();
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return array
+     */
+    public function for_movie($movie_id)
+    {
+        return MovieSession::with('cinema')
+            ->where('movie_id', $movie_id)
+            ->orderBy('scheduled_at')
+            ->get();
     }
 
     /**
@@ -41,11 +55,11 @@ class MovieSessionsApiController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return MovieSession
      */
-    public function show($id)
+    public function show(MovieSession $movie_session)
     {
-        //
+        return $movie_session;
     }
 
     /**
