@@ -19,7 +19,7 @@ Route::get('movies', 'MoviesApiController@index');
 Route::get('movies/{movie}', 'MoviesApiController@show');
 Route::post('movies', 'MoviesApiController@store');
 Route::put('movies/{movie}', 'MoviesApiController@update');
-Route::delete('movies/{movie}', 'MoviesApiController@delete');
+Route::delete('movies/{movie}', 'MoviesApiController@destroy');
 
 Route::get('genres', 'GenresApiController@index');
 

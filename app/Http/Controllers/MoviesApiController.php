@@ -80,6 +80,8 @@ class MoviesApiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Movie::destroy($id);
+
+        return response()->json(['message' => 'Movie deleted successfully'], 204);
     }
 }
