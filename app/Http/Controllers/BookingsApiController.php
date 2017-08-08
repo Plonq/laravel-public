@@ -15,6 +15,7 @@ class BookingsApiController extends Controller
     public function index()
     {
         $bookings = Booking::with('user')
+            ->with('tickets.movie_session.movie', 'tickets.movie_session.cinema')
             ->get();
 
         foreach ($bookings->all() as $booking) {

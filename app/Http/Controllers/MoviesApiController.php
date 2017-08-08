@@ -27,6 +27,22 @@ class MoviesApiController extends Controller
     }
 
     /**
+     * All movies along with all their sessions.
+     *
+     * @return array
+     */
+    public function index_with_sessions()
+    {
+        $movies = Movie::with('movie_sessions.cinema')
+            ->with('genre')
+            ->with('rating')
+            ->orderBy('title')
+            ->get();
+
+        return $movies;
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
