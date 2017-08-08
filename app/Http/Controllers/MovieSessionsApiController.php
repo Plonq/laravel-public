@@ -81,6 +81,6 @@ class MovieSessionsApiController extends Controller
     {
         MovieSession::destroy($id);
 
-        return response('', 204);
+        return response(null, 204);
     }
 }

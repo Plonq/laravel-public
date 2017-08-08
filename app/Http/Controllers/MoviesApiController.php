@@ -100,6 +100,6 @@ class MoviesApiController extends Controller
     {
         Movie::destroy($id);
 
-        return response('', 204);
+        return response(null, 204);
     }
 }
