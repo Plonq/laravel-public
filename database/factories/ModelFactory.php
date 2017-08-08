@@ -31,8 +31,8 @@ $factory->define(App\Movie::class, function (Faker\Generator $faker) {
     return [
         'title' => $title,
         'release_date' => $faker->dateTimeBetween($startDate = '-2 days', $endDate = '+15 days', $timezone = date_default_timezone_get())->format('Y-m-d'),
-        'poster_path' => $faker->imageUrl(500, 750, 'abstract', true, $title),
-        'cover_path' => $faker->imageUrl(1280, 720, 'abstract', true, $title),
+        'poster_image_url' => $faker->imageUrl(500, 750, 'abstract', true, $title),
+        'cover_image_url' => $faker->imageUrl(1280, 720, 'abstract', true, $title),
         'featured' => 0,
         'genre_id' => App\Genre::inRandomOrder()->first()->id,
         'rating_id' => App\Rating::inRandomOrder()->first()->id

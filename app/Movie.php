@@ -10,9 +10,8 @@ class Movie extends Model
         'title',
         'release_date',
         'featured',
-        'poster_path',
-        'cover_path',
-        'poster_path',
+        'poster_image_url',
+        'cover_image_url',
         'genre_id',
         'rating_id'
     ];

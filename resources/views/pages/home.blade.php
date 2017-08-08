@@ -16,7 +16,7 @@
                     @foreach($featured_movies as $movie)
                         <div class="item {!! $loop->first ? 'active' : '' !!}">
                             <a href="{{ route('movie', $movie->id) }}">
-                                <img src="{{ $movie->cover_path }}">
+                                <img src="{{ $movie->cover_image_url }}">
                             </a>
                         </div>
                     @endforeach

@@ -18,8 +18,8 @@ class MoviesTableSeeder extends Seeder
                 'release_date' => date('Y-m-d'),
                 'genre_id' => 12,
                 'rating_id' => 5,
-                'poster_path' => '/images/movies/1_poster.jpg',
-                'cover_path' => '/images/movies/1_cover.jpg',
+                'poster_image_url' => 'https://image.tmdb.org/t/p/original/zmgsaKFWbmZ1Grz4SO0PLNxilv3.jpg',
+                'cover_image_url' => 'https://image.tmdb.org/t/p/original/1642Z6Jz4YtrFa5YJyN6N6FrD8M.jpg',
                 'featured' => true
             ],
             [
@@ -27,8 +27,8 @@ class MoviesTableSeeder extends Seeder
                 'release_date' => date('Y-m-d', strtotime('-1 day')),
                 'genre_id' => 10,
                 'rating_id' => 4,
-                'poster_path' => '/images/movies/2_poster.jpg',
-                'cover_path' => '/images/movies/2_cover.jpg',
+                'poster_image_url' => 'https://www.newsfolo.com/wp-content/uploads/2017/06/cm-1.png',
+                'cover_image_url' => 'https://2.bp.blogspot.com/-st-I20fh6ZI/WFKnQACXTlI/AAAAAAAAP1k/Obw6iXSPSUElpMPmgclKPPIQ63ExN4cGQCLcB/w1200-h630-p-k-no-nu/Download-Channa-Mereya-%2528ADHM%2529-DJ-NYK-Future-Bass-Remix.jpg',
                 'featured' => true
             ],
             [
@@ -36,8 +36,8 @@ class MoviesTableSeeder extends Seeder
                 'release_date' => date('Y-m-d', strtotime('-2 days')),
                 'genre_id' => 2,
                 'rating_id' => 3,
-                'poster_path' => '/images/movies/3_poster.jpg',
-                'cover_path' => '/images/movies/3_cover.jpg',
+                'poster_image_url' => 'https://image.tmdb.org/t/p/original/oqZ0MBWxNrArZpyVqk3QGAA37QL.jpg',
+                'cover_image_url' => 'https://image.tmdb.org/t/p/original/69hvi7xf6VIRRJduSYl1yZIzJn8.jpg',
                 'featured' => true
             ],
             [
@@ -45,8 +45,8 @@ class MoviesTableSeeder extends Seeder
                 'release_date' => date('Y-m-d', strtotime('+1 days')),
                 'genre_id' => 1,
                 'rating_id' => 4,
-                'poster_path' => '/images/movies/4_poster.jpg',
-                'cover_path' => '/images/movies/4_cover.jpg',
+                'poster_image_url' => 'https://image.tmdb.org/t/p/w220_and_h330_bestv2/qquEFkFbQX1i8Bal260EgGCnZ0f.jpg',
+                'cover_image_url' => 'https://image.tmdb.org/t/p/original/fYI8WX2DquAHMqwh5mOMxc6RU5j.jpg',
                 'featured' => true
             ],
             [
@@ -54,8 +54,8 @@ class MoviesTableSeeder extends Seeder
                 'release_date' => date('Y-m-d'),
                 'genre_id' => 13,
                 'rating_id' => 2,
-                'poster_path' => '/images/movies/5_poster.jpg',
-                'cover_path' => '/images/movies/5_cover.jpg',
+                'poster_image_url' => 'https://image.tmdb.org/t/p/w220_and_h330_bestv2/4RTG2AaqZ9eleL51ryWwv78WwDu.jpg',
+                'cover_image_url' => 'https://image.tmdb.org/t/p/w350_and_h196_bestv2/baXCl6ayI2FGtwtXdPduvYJU1ET.jpg',
                 'featured' => false
             ]
         ]);
