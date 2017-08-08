@@ -87,7 +87,7 @@ class MoviesApiController extends Controller
     {
         Movie::find($id)->update($request->all());
 
-        return response('', 204);
+        return response(null, 204);
     }
 
     /**

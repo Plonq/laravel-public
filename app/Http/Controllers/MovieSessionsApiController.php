@@ -68,7 +68,9 @@ class MovieSessionsApiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        MovieSession::find($id)->update($request->all());
+
+        return response(null, 204);
     }
 
     /**
