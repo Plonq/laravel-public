@@ -45,7 +45,7 @@ $factory->define(App\MovieSession::class, function (Faker\Generator $faker) {
     $movie = App\Movie::inRandomOrder()->first();
 
     return [
-        'scheduled_at' => $faker->dateTimeBetween($startDate = $movie->release_date, $endDate = '+17 days', $timezone = date_default_timezone_get())->format('Y-m-d H:i:s'),
+        'scheduled_at' => $faker->dateTimeBetween($startDate = $movie->release_date, $endDate = '+17 days', $timezone = date_default_timezone_get())->format('Y-m-d H:i'),
         'cinema_id' => App\Cinema::inRandomOrder()->first()->id,
         'movie_id' => $movie->id
     ];

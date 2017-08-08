@@ -38,7 +38,14 @@ class MovieSessionsApiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $movie_session = MovieSession::create($request->all());
+
+        if ($movie_session) {
+            return response(null, 204);
+        }
+        else {
+            return response(null, 500);
+        }
     }
 
     /**

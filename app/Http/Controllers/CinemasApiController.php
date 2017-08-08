@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cinema;
 use Illuminate\Http\Request;
 
 class CinemasApiController extends Controller
@@ -9,11 +10,11 @@ class CinemasApiController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return array
      */
     public function index()
     {
-        //
+        return Cinema::all();
     }
 
     /**
