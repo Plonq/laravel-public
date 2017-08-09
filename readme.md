@@ -1,6 +1,6 @@
 # Mavericks Inc. Movies - Part A Laravel #
 
-PCP375 Web Database Applications - Assignment 2
+CPT375 Web Database Applications - Assignment 2
 
 ### Github Repository ###
 
