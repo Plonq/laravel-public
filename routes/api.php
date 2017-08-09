@@ -34,28 +34,30 @@ Route::put('movie_sessions/{movie_session}', 'MovieSessionsApiController@update'
 Route::delete('movie_sessions/{movie_session}', 'MovieSessionsApiController@destroy');
 
 Route::get('cinemas', 'CinemasApiController@index');
-Route::get('cinemas/{cinema}', 'CinemasApiController@show');
-Route::post('cinemas', 'CinemasApiController@store');
-Route::put('cinemas/{cinema}', 'CinemasApiController@update');
-Route::delete('cinemas/{cinema}', 'CinemasApiController@destroy');
+//Route::get('cinemas/{cinema}', 'CinemasApiController@show');
+//Route::post('cinemas', 'CinemasApiController@store');
+//Route::put('cinemas/{cinema}', 'CinemasApiController@update');
+//Route::delete('cinemas/{cinema}', 'CinemasApiController@destroy');
 
 Route::get('bookings', 'BookingsApiController@index');
+Route::get('bookings/by_movie/{movie_id}', 'BookingsApiController@for_movie');
+Route::get('bookings/by_movie_session/{movie_session_id}', 'BookingsApiController@for_movie_session');
 Route::get('bookings/{booking}', 'BookingsApiController@show');
 
-Route::get('tickets', 'TicketsApiController@index');
-Route::get('tickets/{ticket}', 'TicketsApiController@show');
-Route::post('tickets', 'TicketsApiController@store');
-Route::put('tickets/{ticket}', 'TicketsApiController@update');
-Route::delete('tickets/{ticket}', 'TicketsApiController@destroy');
+//Route::get('tickets', 'TicketsApiController@index');
+//Route::get('tickets/{ticket}', 'TicketsApiController@show');
+//Route::post('tickets', 'TicketsApiController@store');
+//Route::put('tickets/{ticket}', 'TicketsApiController@update');
+//Route::delete('tickets/{ticket}', 'TicketsApiController@destroy');
 
-Route::get('ticket_types', 'TicketTypesApiController@index');
-Route::get('ticket_types/{ticket_type}', 'TicketTypesApiController@show');
-Route::post('ticket_types', 'TicketTypesApiController@store');
-Route::put('ticket_types/{ticket_type}', 'TicketTypesApiController@update');
-Route::delete('ticket_types/{ticket_type}', 'TicketTypesApiController@destroy');
+//Route::get('ticket_types', 'TicketTypesApiController@index');
+//Route::get('ticket_types/{ticket_type}', 'TicketTypesApiController@show');
+//Route::post('ticket_types', 'TicketTypesApiController@store');
+//Route::put('ticket_types/{ticket_type}', 'TicketTypesApiController@update');
+//Route::delete('ticket_types/{ticket_type}', 'TicketTypesApiController@destroy');
 
-Route::get('users', 'UsersApiController@index');
-Route::get('users/{user}', 'UsersApiController@show');
-Route::post('users', 'UsersApiController@store');
-Route::put('users/{user}', 'UsersApiController@update');
-Route::delete('users/{user}', 'UsersApiController@destroy');
+//Route::get('users', 'UsersApiController@index');
+//Route::get('users/{user}', 'UsersApiController@show');
+//Route::post('users', 'UsersApiController@store');
+//Route::put('users/{user}', 'UsersApiController@update');
+//Route::delete('users/{user}', 'UsersApiController@destroy');
