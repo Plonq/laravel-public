@@ -37,5 +37,25 @@ class BookingsTableSeeder extends Seeder
                 'cc_cvc' => '111'
             ]
         ]);
+
+        // Bookings for just one movie/session
+        for($i = 0; $i <= 25; $i++) {
+            $b = factory(App\Booking::class)->create();
+            $ms = App\MovieSession::inRandomOrder()->first();
+
+            factory(App\Ticket::class, 3)->create([
+                'booking_id' => $b->id,
+                'movie_session_id' => $ms->id
+            ]);
+        }
+
+        // Bookings for two random movies/sessions
+        for($i = 0; $i <= 25; $i++) {
+            $b = factory(App\Booking::class)->create();
+
+            factory(App\Ticket::class, 2)->create([
+                'booking_id' => $b->id
+            ]);
+        }
     }
 }

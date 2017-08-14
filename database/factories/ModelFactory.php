@@ -50,3 +50,37 @@ $factory->define(App\MovieSession::class, function (Faker\Generator $faker) {
         'movie_id' => $movie->id
     ];
 });
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Booking::class, function (Faker\Generator $faker) {
+
+    $user = App\User::inRandomOrder()->first();
+
+    return [
+        'name' => $user->name,
+        'address' => $faker->address,
+        'city' => $faker->city,
+        'postcode' => $faker->postcode,
+        'cc_number' => $faker->creditCardNumber,
+        'cc_expiry_month' => explode('/', $faker->creditCardExpirationDateString)[0],
+        'cc_expiry_year' => explode('/', $faker->creditCardExpirationDateString)[1],
+        'cc_cvc' => $faker->numberBetween(100,9999),
+        'user_id' => $user->id,
+    ];
+});
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Ticket::class, function (Faker\Generator $faker) {
+
+    // Note booking and session should be overwritten when using this factory to generate realistic data
+    $booking = App\Booking::inRandomOrder()->first();
+    $movie_session = App\MovieSession::inRandomOrder()->first();
+    $ticket_type = App\TicketType::inRandomOrder()->first();
+
+    return [
+        'quantity' => $faker->numberBetween(1, 10),
+        'booking_id' => $booking->id,
+        'movie_session_id' => $movie_session->id,
+        'ticket_type_id' => $ticket_type->id,
+    ];
+});
