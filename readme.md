@@ -1,10 +1,6 @@
-# Mavericks Inc. Movies - Part A Laravel #
+# Mavericks Inc. Movies #
 
-CPT375 Web Database Applications - Assignment 2
-
-### Github Repository ###
-
-https://github.com/Plonq/laravel-public
+Assignment for Bachelor of IT, written in Laravel.
 
 ### External Resources Used ###
 
